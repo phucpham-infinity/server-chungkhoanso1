@@ -6,6 +6,7 @@ import { Transporter } from 'nodemailer';
 
 import { ENV } from '@/helpers';
 
+import HealthCheckRoute from '@/routes/health-check';
 import UserRoute from '@/routes/user';
 import TableRoute from '@/routes/table';
 import SendMailRoute from '@/routes/send-mail';
@@ -22,7 +23,12 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-app.use('/', [UserRoute, TableRoute, SendMailRoute]);
+app.use('/', [
+  HealthCheckRoute,
+  UserRoute,
+  TableRoute,
+  SendMailRoute,
+]);
 
 app
   .listen(PORT, () => {

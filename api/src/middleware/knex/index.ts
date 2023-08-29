@@ -1,21 +1,25 @@
-import { NextFunction, Request } from "express";
-import { Knex, knex } from "knex";
-import { isArray } from "lodash";
-import { ENV } from "@/helpers";
+import { NextFunction, Request } from 'express';
+import { Knex, knex } from 'knex';
+import { isArray } from 'lodash';
+import { ENV } from '@/helpers';
 
 type KnexFn = (trx: Knex<any>) => any;
 
-export async function knexConnect(request: Request, _, next: NextFunction) {
+export async function knexConnect(
+  request: Request,
+  _,
+  next: NextFunction,
+) {
   const knexClient: Knex = knex({
-    client: "mysql",
+    client: 'mysql',
     debug: true,
     useNullAsDefault: true,
     connection: {
-      host: ENV("DB_HOST"),
-      port: +ENV("DB_POST"),
-      user: ENV("DB_USER"),
-      password: ENV("DB_PASSWORD"),
-      database: ENV("DB_DATABASE"),
+      host: ENV('DB_HOST'),
+      port: +ENV('DB_POST'),
+      user: ENV('DB_USER'),
+      password: ENV('DB_PASSWORD'),
+      database: ENV('DB_DATABASE'),
     },
     pool: {
       min: 2,
@@ -24,7 +28,7 @@ export async function knexConnect(request: Request, _, next: NextFunction) {
   });
   request.knexClient = knexClient;
   request.knex = async (
-    fn: KnexFn | KnexFn[]
+    fn: KnexFn | KnexFn[],
   ): Promise<[any, Error | null]> => {
     try {
       let payload: any = null;
@@ -37,14 +41,16 @@ export async function knexConnect(request: Request, _, next: NextFunction) {
         for (let index = 0; index < fn.length; index++) {
           process.push(fn?.[index]?.(knexClient));
         }
-        payload = await Promise.all(process).finally(async () => {
-          await knexClient.destroy();
-        });
+        payload = await Promise.all(process).finally(
+          async () => {
+            await knexClient.destroy();
+          },
+        );
       }
       return [payload, null];
     } catch (error) {
       return [null, error];
     }
   };
-  next()
+  next();
 }
