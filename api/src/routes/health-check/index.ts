@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import { knexConnect, query } from '@/middleware';
-
 import { checkInfo } from './controllers/check';
 
-const router = Router().use(knexConnect).use(query);
+const router = Router();
 
-router.route('/health-check').get(checkInfo);
+router
+  .route('/health-check')
+  .get([knexConnect, query, checkInfo]);
 
 export default router;

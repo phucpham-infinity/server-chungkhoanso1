@@ -1,15 +1,75 @@
 import { Router } from 'express';
-import { approveUser, login, me, resetPassword, changePassword, forgetPassword } from './controllers';
-import { knexConnect, query, hashPassword, mailTransporterConnect } from '@/middleware';
+import {
+  approveUser,
+  login,
+  me,
+  resetPassword,
+  changePassword,
+  forgetPassword,
+} from './controllers';
+import {
+  knexConnect,
+  query,
+  hashPassword,
+  mailTransporterConnect,
+} from '@/middleware';
 
-const router = Router().use(knexConnect).use(query).use(hashPassword).use(mailTransporterConnect);;
+const router = Router();
 
-router.route('/users/login').post(login);
-router.route('/users/me').get(me);
-router.route('/users/approve/:userId').post(approveUser);
+router
+  .route('/users/login')
+  .post([
+    knexConnect,
+    query,
+    hashPassword,
+    mailTransporterConnect,
+    login,
+  ]);
+router
+  .route('/users/me')
+  .get([
+    knexConnect,
+    query,
+    hashPassword,
+    mailTransporterConnect,
+    me,
+  ]);
+router
+  .route('/users/approve/:userId')
+  .post([
+    knexConnect,
+    query,
+    hashPassword,
+    mailTransporterConnect,
+    approveUser,
+  ]);
 
-router.route('/users/reset-password/:userId').get(resetPassword);
-router.route('/users/change-password').post(changePassword);
-router.route('/users/forget-password').post(forgetPassword);
+router
+  .route('/users/reset-password/:userId')
+  .get([
+    knexConnect,
+    query,
+    hashPassword,
+    mailTransporterConnect,
+    resetPassword,
+  ]);
+router
+  .route('/users/change-password')
+  .post([
+    knexConnect,
+    query,
+    hashPassword,
+    mailTransporterConnect,
+    changePassword,
+  ]);
+router
+  .route('/users/forget-password')
+  .post([
+    knexConnect,
+    query,
+    hashPassword,
+    mailTransporterConnect,
+    forgetPassword,
+  ]);
 
 export default router;
