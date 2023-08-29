@@ -28,7 +28,7 @@ app.use(
 app.use(express.json());
 app.use(morgan('combined'));
 
-app.use('/', [
+app.use('/api', [
   HealthCheckRoute,
   UserRoute,
   TableRoute,
