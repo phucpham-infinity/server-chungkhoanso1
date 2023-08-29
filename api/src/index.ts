@@ -3,7 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import { Knex } from 'knex';
 import { Transporter } from 'nodemailer';
-
+import morgan from 'morgan';
 import { ENV } from '@/helpers';
 
 import HealthCheckRoute from '@/routes/health-check';
@@ -20,8 +20,13 @@ const PORT: number = +ENV('PORT');
 export const app = express();
 
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    origin: '*',
+  }),
+);
 app.use(express.json());
+app.use(morgan('combined'));
 
 app.use('/', [
   HealthCheckRoute,
