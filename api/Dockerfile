@@ -16,7 +16,7 @@ COPY --from=build-stage /build/app.js ./
 COPY --from=build-stage .env ./
 COPY --from=build-stage /templates ./templates
 RUN npm install -g pnpm
-RUN pnpm init -y
+RUN npm init -y
 RUN pnpm install mysql
 RUN pnpm install knex
 RUN tar -czf app.tar.gz .
