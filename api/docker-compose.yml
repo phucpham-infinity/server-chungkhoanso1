@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  api-app:
+    build: .
+    container_name: sks1-api
+    ports:
+      - 3000:3000
