@@ -39,7 +39,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -a -m "Auto-generated build"
-          git push
+          git push --allow-empty
 
       - name: SSH into Server
         uses: appleboy/ssh-action@v1.0.0
