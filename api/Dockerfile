@@ -19,7 +19,6 @@ RUN npm install -g pnpm
 RUN npm init -y
 RUN pnpm install mysql
 RUN pnpm install knex
-RUN tar -czf app.tar.gz .
 
 EXPOSE 3000
 
