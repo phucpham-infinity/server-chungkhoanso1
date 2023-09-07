@@ -40,3 +40,21 @@ jobs:
           git config --local user.name "GitHub Action"
           git commit -a -m "Auto-generated build"
           git push
+
+      - name: SSH into Server
+        uses: appleboy/ssh-action@v0.5.2
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_PORT }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+
+      - name: Pull code on Server
+        run: |
+          cd /root/app/server-chungkhoanso1
+          git pull
+
+      - name: Deploy docker compose on Server
+        run: |
+          cd /root/app/server-chungkhoanso1
+          make up-all
