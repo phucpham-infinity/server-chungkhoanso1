@@ -15,7 +15,7 @@ export const checkInfo = async (
 
   return res.status(OKE).json({
     statusCode: 200,
-    test: { count: 1 },
+    test: { count: 2 },
     data,
   });
 };

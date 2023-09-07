@@ -7,7 +7,8 @@
     "dev:web": "pnpm --filter web-admin run dev",
     "dev:api": "pnpm --filter api run dev",
     "build:api": "pnpm --filter api run build",
-    "build:web": "pnpm --filter web-admin run build"
+    "build:web": "pnpm --filter web-admin run build",
+    "build": "pnpm run build:api && pnpm run build:web"
   },
   "devDependencies": {
     "concurrently": "^8.0.1"
