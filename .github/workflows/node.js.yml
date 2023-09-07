@@ -51,10 +51,12 @@ jobs:
 
       - name: Pull code on Server
         run: |
+          sudo su
           cd /root/app/server-chungkhoanso1
           git pull
 
       - name: Deploy docker compose on Server
         run: |
+          sudo su
           cd /root/app/server-chungkhoanso1
           make up-all
