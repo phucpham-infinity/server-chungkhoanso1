@@ -42,7 +42,7 @@ jobs:
           git push
 
       - name: SSH into Server
-        uses: appleboy/ssh-action@v0.5.2
+        uses: appleboy/ssh-action
         with:
           host: ${{ secrets.SERVER_HOST }}
           port: ${{ secrets.SERVER_PORT }}
