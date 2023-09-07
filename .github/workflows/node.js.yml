@@ -48,14 +48,7 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
-
-      - name: Pull code on Server
-        run: |
-          cd ~/app/server-chungkhoanso1
-          git pull
-
-      - name: Deploy docker compose on Server
-        run: |
-          sudo su
-          cd ~/app/server-chungkhoanso1
-          make up-all
+          script: |
+            cd /root/app/server-chungkhoanso1
+            git pull
+            make up-all
