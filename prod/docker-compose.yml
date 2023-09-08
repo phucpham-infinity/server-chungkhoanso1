@@ -68,6 +68,6 @@ services:
     volumes:
       - ./storage:/data
     environment:
-      MINIO_ROOT_USER: thuanbuidepchai
-      MINIO_ROOT_PASSWORD: vodichtoanvutru
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: chungkhoanso1vn
     command: server --console-address ":9001" /data
