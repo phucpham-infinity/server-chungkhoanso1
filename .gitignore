@@ -4,3 +4,5 @@ web_admin/node_modules
 prod/db
 api/db
 prod/data
+prod/pb_public
+prod/pb_data

@@ -1,4 +1,4 @@
-"use client";
+import React from "react";
 
 import {
   Button,
@@ -13,7 +13,14 @@ import {
   Image,
 } from "@chakra-ui/react";
 
+import useAuthBloc from "@/pages/auth/auth.bloc";
+
 export default function LoginPage() {
+  const { handleLogin } = useAuthBloc();
+
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
   return (
     <Stack w={"100vw"} minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
@@ -21,11 +28,19 @@ export default function LoginPage() {
           <Heading fontSize={"2xl"}>Sign in to your account</Heading>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
-            <Input type="email" />
+            <Input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+            />
           </FormControl>
           <FormControl id="password">
             <FormLabel>Password</FormLabel>
-            <Input type="password" />
+            <Input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+            />
           </FormControl>
           <Stack spacing={6}>
             <Stack
@@ -36,7 +51,11 @@ export default function LoginPage() {
               <Checkbox>Remember me</Checkbox>
               <Text color={"blue.500"}>Forgot password?</Text>
             </Stack>
-            <Button colorScheme={"blue"} variant={"solid"}>
+            <Button
+              onClick={() => handleLogin({ email, password })}
+              colorScheme={"blue"}
+              variant={"solid"}
+            >
               Sign in
             </Button>
           </Stack>
@@ -46,9 +65,7 @@ export default function LoginPage() {
         <Image
           alt={"Login Image"}
           objectFit={"cover"}
-          src={
-            "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80"
-          }
+          src={"http://storage.chungkhoanso1.vn/app/images/login-bg.avif"}
         />
       </Flex>
     </Stack>

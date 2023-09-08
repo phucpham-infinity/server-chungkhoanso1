@@ -1,12 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import ThemeProvider from './theme'
-import RouterProvider from './router'
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+import ThemeProvider from "./theme";
+import RouterProvider from "./router";
+import ServerProvider from "./server";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <RouterProvider />
-    </ThemeProvider>
-  </React.StrictMode>,
-)
+    <ServerProvider>
+      <ThemeProvider>
+        <RouterProvider />
+      </ThemeProvider>
+    </ServerProvider>
+  </React.StrictMode>
+);
