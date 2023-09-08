@@ -3,3 +3,4 @@ api/node_modules
 web_admin/node_modules
 prod/db
 api/db
+prod/data
