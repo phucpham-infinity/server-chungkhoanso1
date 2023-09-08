@@ -55,5 +55,7 @@ services:
       PMA_ARBITRARY: 1
       UPLOAD_LIMIT: 99999K
     restart: always
+    expose:
+      - 80
     ports:
       - 8081:80
