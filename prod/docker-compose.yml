@@ -70,4 +70,6 @@ services:
     environment:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: chungkhoanso1vn
+      MINIO_BROWSER_REDIRECT_URL: http://minio.chungkhoanso1.vn
+      MINIO_SERVER_URL: http://storage.chungkhoanso1.vn
     command: server --console-address ":9001" /data
