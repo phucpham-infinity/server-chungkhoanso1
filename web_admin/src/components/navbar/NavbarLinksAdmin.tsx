@@ -22,8 +22,6 @@ import { FaEthereum } from "react-icons/fa";
 export default function HeaderLinks(props: any) {
   const { secondary, user, onLogout } = props;
   const { colorMode, toggleColorMode } = useColorMode();
-  console.log("useruser", user);
-
   // Chakra Color Mode
   const navbarIcon = useColorModeValue("gray.400", "white");
   let menuBg = useColorModeValue("white", "navy.800");
