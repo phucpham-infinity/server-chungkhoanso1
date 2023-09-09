@@ -52,7 +52,10 @@ export default function LoginPage() {
               <Text color={"blue.500"}>Forgot password?</Text>
             </Stack>
             <Button
-              onClick={() => handleLogin({ email, password })}
+              isLoading={handleLogin.isLoading}
+              onClick={() => {
+                handleLogin.mutate({ email, password });
+              }}
               colorScheme={"blue"}
               variant={"solid"}
             >

@@ -2,14 +2,20 @@ import { create } from "zustand";
 
 interface IAppStore {
   user: any;
+  token: string;
   isAuthenticated: boolean;
   setUser: (user: any) => any;
+  setToken: (token: string) => any;
+  clear: () => any;
 }
 
 const useAppStore = create<IAppStore>((set) => ({
+  token: "",
   user: null,
   isAuthenticated: false,
   setUser: (user) => set({ user, isAuthenticated: true }),
+  setToken: (token: string) => set({ token }),
+  clear: () => set({ token: "", isAuthenticated: false, user: null }),
 }));
 
 useAppStore.subscribe((state, prevState) => {

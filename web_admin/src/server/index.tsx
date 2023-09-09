@@ -1,5 +1,7 @@
 import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import PocketBase from "pocketbase";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 export * from "./axios_config";
 
 interface IServerProvider {
@@ -11,6 +13,11 @@ const queryClient = new QueryClient();
 export default function ServerProvider(props: IServerProvider) {
   const { children } = props;
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      {children}
+    </QueryClientProvider>
   );
 }
+
+export const pb = new PocketBase("http://pocketbase.chungkhoanso1.vn");

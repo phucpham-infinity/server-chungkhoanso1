@@ -9,7 +9,7 @@ const route: RouteObject = {
   element: <AuthLayout />,
   children: [
     {
-      path: "login",
+      path: "/auth/login",
       element: <LoginPage />,
     },
   ],
