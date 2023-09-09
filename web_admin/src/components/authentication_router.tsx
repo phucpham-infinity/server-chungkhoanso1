@@ -20,6 +20,8 @@ const AuthenticationRouter = (props: IAuthenticationRouter) => {
       setIsLoading(false);
       setToken(pb.authStore.token);
       setUser(pb.authStore.model);
+    } else {
+      setIsLoading(false);
     }
   }, [pb.authStore]);
 
