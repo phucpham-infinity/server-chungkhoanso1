@@ -25,6 +25,10 @@ export default function LoginPage() {
     <Stack w={"100vw"} minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
+          <Image
+            w={"100px"}
+            src="http://storage.chungkhoanso1.vn/app/images/logo_bg_white.png"
+          />
           <Heading fontSize={"2xl"}>Sign in to your account</Heading>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
