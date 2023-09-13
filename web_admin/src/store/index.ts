@@ -7,6 +7,9 @@ interface IAppStore {
   setUser: (user: any) => any;
   setToken: (token: string) => any;
   clear: () => any;
+  page: {
+    title: string;
+  };
 }
 
 const useAppStore = create<IAppStore>((set) => ({
@@ -16,6 +19,9 @@ const useAppStore = create<IAppStore>((set) => ({
   setUser: (user) => set({ user, isAuthenticated: true }),
   setToken: (token: string) => set({ token }),
   clear: () => set({ token: "", isAuthenticated: false, user: null }),
+  page: {
+    title: "Dashboard",
+  },
 }));
 
 useAppStore.subscribe((state, prevState) => {

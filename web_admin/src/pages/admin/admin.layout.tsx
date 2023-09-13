@@ -1,13 +1,13 @@
 import Sidebar from "@/components/sidebar/Sidebar";
 import * as CK from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
-import { BiHomeAlt2 } from "react-icons/bi";
+import { BiHomeAlt2 , BiBarChartAlt2 } from "react-icons/bi";
 import Navbar from "@/components/navbar/NavbarAdmin";
 import useAdminBloc from "./admin.bloc";
 
 const AdminPage = () => {
   const { onOpen } = CK.useDisclosure();
-  const { handleLogout, user } = useAdminBloc();
+  const { handleLogout, user , title, title1} = useAdminBloc();
 
   return (
     <CK.Box>
@@ -20,8 +20,21 @@ const AdminPage = () => {
             icon: (
               <CK.Icon
                 as={BiHomeAlt2}
-                width="22px"
-                height="22px"
+                width="24px"
+                height="24px"
+                color="inherit"
+              />
+            ),
+          },
+          {
+            name: "Thống kê giao dịch",
+            path: "/chart/chart_1",
+            layout: "/admin",
+            icon: (
+              <CK.Icon
+                as={BiBarChartAlt2}
+                width="24px"
+                height="24px"
                 color="inherit"
               />
             ),
@@ -47,14 +60,13 @@ const AdminPage = () => {
           <CK.Box>
             <Navbar
               onLogout={() => {
-                console.log("onLogout");
                 handleLogout();
               }}
               user={user}
               onOpen={onOpen}
               logoText={"Horizon UI Dashboard PRO"}
-              brandText={"Main Dashboard"}
-              message={"Main Dashboard"}
+              brandText={title1}
+              pageText={title}
               fixed={false}
               secondary={false}
             />

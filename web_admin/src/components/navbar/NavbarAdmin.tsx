@@ -12,12 +12,13 @@ import AdminNavbarLinks from "./NavbarLinksAdmin";
 
 export default function AdminNavbar(props: {
   secondary: boolean;
-  message: string | boolean;
+  message?: string | boolean;
   brandText: string;
   logoText: string;
   user?: any;
   fixed: boolean;
   onLogout?: Function;
+  pageText?: string;
   onOpen: (...args: any[]) => any;
 }) {
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +31,7 @@ export default function AdminNavbar(props: {
     };
   });
 
-  const { secondary, brandText, user, onLogout } = props;
+  const { secondary, brandText, user, onLogout , pageText} = props;
 
   // Here are all the props that may change depending on navbar's type or state.(secondary, variant, scrolled)
   let mainText = useColorModeValue("navy.700", "white");
@@ -121,6 +122,7 @@ export default function AdminNavbar(props: {
               </BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
+          <Box pt={1}>
           <Link
             color={mainText}
             href="#"
@@ -128,6 +130,7 @@ export default function AdminNavbar(props: {
             borderRadius="inherit"
             fontWeight="bold"
             fontSize="34px"
+          
             _hover={{ color: { mainText } }}
             _active={{
               bg: "inherit",
@@ -138,8 +141,9 @@ export default function AdminNavbar(props: {
               boxShadow: "none",
             }}
           >
-            {brandText}
+            {pageText}
           </Link>
+          </Box>
         </Box>
         <Box ms="auto" w={{ sm: "100%", md: "unset" }}>
           <AdminNavbarLinks

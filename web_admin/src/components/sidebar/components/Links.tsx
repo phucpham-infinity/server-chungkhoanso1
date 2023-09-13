@@ -2,7 +2,7 @@
 
 import { NavLink, useLocation } from "react-router-dom";
 // chakra imports
-import { Box, Flex, HStack, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex, HStack, Text, useColorModeValue ,VStack} from "@chakra-ui/react";
 
 export function SidebarLinks(props: { routes: any[] }) {
   //   Chakra color mode
@@ -43,7 +43,7 @@ export function SidebarLinks(props: { routes: any[] }) {
                   ps="10px"
                 >
                   <Flex w="100%" alignItems="flex-end" justifyContent="center">
-                    <Box
+                    <VStack
                       color={
                         activeRoute(route.path.toLowerCase())
                           ? activeIcon
@@ -52,7 +52,7 @@ export function SidebarLinks(props: { routes: any[] }) {
                       me="18px"
                     >
                       {route.icon}
-                    </Box>
+                    </VStack>
                     <Text
                       me="auto"
                       color={
@@ -60,7 +60,7 @@ export function SidebarLinks(props: { routes: any[] }) {
                           ? activeColor
                           : textColor
                       }
-                      fontSize={"18px"}
+                      fontSize={"16px"}
                       fontWeight={
                         activeRoute(route.path.toLowerCase())
                           ? "bold"
