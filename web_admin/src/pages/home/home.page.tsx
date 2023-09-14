@@ -6,6 +6,7 @@ import {
   VStack,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import HomeBg from '@/assets/images/home-bg.avif'
 
 export default function WithBackgroundImage() {
   return (
@@ -13,7 +14,7 @@ export default function WithBackgroundImage() {
       w={"full"}
       h={"100vh"}
       backgroundImage={
-        "url(http://storage.chungkhoanso1.vn/app/images/home-bg.avif)"
+        `url("${HomeBg}")`
       }
       backgroundSize={"cover"}
       backgroundPosition={"center center"}
