@@ -51,9 +51,15 @@ services:
     image: nginx:1.23.3
     expose:
       - 80
+      - 443
     volumes:
       - ../web_admin/dist:/usr/share/nginx/html
       - ../web_admin/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ../web_admin/nginx/ssl/server_chungkhoanso1_vn_certificate.crt:/root/ssl/server_chungkhoanso1_vn_certificate.crt
+      - ../web_admin/nginx/ssl/server_chungkhoanso1_vn_certificate.pem:/root/ssl/server_chungkhoanso1_vn_certificate.pem
+      - ../web_admin/nginx/ssl/server_chungkhoanso1_vn_privkey.key:/root/ssl/server_chungkhoanso1_vn_privkey.key
+      - ../web_admin/nginx/ssl/server_chungkhoanso1_vn_rootca.crt:/root/ssl/server_chungkhoanso1_vn_rootca.crt
+      
       
   # phpmyadmin:
   #   image: phpmyadmin/phpmyadmin
