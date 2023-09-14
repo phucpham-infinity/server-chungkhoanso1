@@ -12,8 +12,6 @@ services:
       MYSQL_PASSWORD: chungkhoangso1vn
     expose:
       - 3306
-    ports:
-      - "3306:3306"
     volumes:
       - ./db:/var/lib/mysql
 
@@ -81,9 +79,6 @@ services:
     expose:
       - 9000
       - 9001
-    ports:
-      - "9000:9000"
-      - "9001:9001"
     volumes:
       - ./storage:/data
     environment:
@@ -99,8 +94,6 @@ services:
     restart: unless-stopped
     expose:
       - 8090
-    ports:
-      - "8090:8090"
     volumes:
       - /path/to/data:/pb_data
       - /path/to/public:/pb_public 
