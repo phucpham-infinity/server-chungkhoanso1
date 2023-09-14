@@ -5,6 +5,8 @@ services:
     image: portainer/portainer-ce:latest
     expose:
       - 9443
+      - 8000
+      - 9000
     volumes:
         - ./portainer:/data
         - /var/run/docker.sock:/var/run/docker.sock
