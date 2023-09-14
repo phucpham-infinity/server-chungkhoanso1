@@ -76,7 +76,7 @@ services:
   minio:
     image: minio/minio
     container_name: minio
-    expose:
+    ports:
       - 9000
       - 9001
     volumes:
@@ -92,7 +92,7 @@ services:
     image: ghcr.io/muchobien/pocketbase:latest
     container_name: pocketbase
     restart: unless-stopped
-    expose:
+    ports:
       - 8090
     volumes:
       - /path/to/data:/pb_data
