@@ -9,3 +9,5 @@ prod/pb_data
 prod/nginx-proxy-manager
 prod/letsencrypt
 prod/letsencrypt2
+prod/portainer
+prod/storage
