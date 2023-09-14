@@ -6,3 +6,6 @@ api/db
 prod/data
 prod/pb_public
 prod/pb_data
+prod/nginx-proxy-manager
+prod/letsencrypt
+prod/letsencrypt2

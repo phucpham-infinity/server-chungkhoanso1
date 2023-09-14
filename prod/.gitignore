@@ -3,3 +3,6 @@ db
 data
 pb_public
 pb_data
+nginx-proxy-manager
+letsencrypt
+letsencrypt2
