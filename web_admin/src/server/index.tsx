@@ -20,4 +20,4 @@ export default function ServerProvider(props: IServerProvider) {
   );
 }
 
-export const pb = new PocketBase("http://pocketbase.chungkhoanso1.vn");
+export const pb = new PocketBase("https://server.chungkhoanso1.vn");
