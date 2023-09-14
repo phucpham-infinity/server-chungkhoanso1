@@ -1,21 +1,21 @@
 version: '3'
  
 services:
-  # db:
-  #   image: mysql
-  #   container_name: db
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: chungkhoangso1vn
-  #     MYSQL_DATABASE: app_db
-  #     MYSQL_USER: api_dev
-  #     MYSQL_PASSWORD: chungkhoangso1vn
-  #   expose:
-  #     - 3306
-  #   ports:
-  #     - "3306:3306"
-  #   volumes:
-  #     - ./db:/var/lib/mysql
+  db:
+    image: mysql
+    container_name: db
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: chungkhoangso1vn
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: api_dev
+      MYSQL_PASSWORD: chungkhoangso1vn
+    expose:
+      - 3306
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/var/lib/mysql
 
   proxy:
     image: 'jc21/nginx-proxy-manager:latest'
@@ -76,9 +76,12 @@ services:
   minio:
     image: minio/minio
     container_name: minio
-    ports:
+    expose:
       - 9000
       - 9001
+    ports:
+      - "9000:9000"
+      - "9001:9001"
     volumes:
       - ./storage:/data
     environment:
@@ -92,8 +95,10 @@ services:
     image: ghcr.io/muchobien/pocketbase:latest
     container_name: pocketbase
     restart: unless-stopped
-    ports:
+    expose:
       - 8090
+    ports:
+      - "8090:8090"
     volumes:
       - /path/to/data:/pb_data
       - /path/to/public:/pb_public 
