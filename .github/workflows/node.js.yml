@@ -5,9 +5,9 @@ name: Build and deploy web-app
 
 on:
   push:
-    branches: ["dev"]
+    branches: ["main"]
   pull_request:
-    branches: ["dev"]
+    branches: ["main"]
 
 jobs:
   build-deploy:
@@ -52,4 +52,4 @@ jobs:
           script: |
             cd /root/app/server-chungkhoanso1
             git pull
-            make up-all
+            make up
