@@ -23,7 +23,7 @@ export const approveUser = async (
   const password = await req.hashPassword(default_password);
 
   const [user2, err2] = await req.knex(knex =>
-    knex('students').where({ id: userId }).update({
+    knex('users').where({ id: userId }).update({
       password,
       default_password,
       status: 'APPROVED',

@@ -12,20 +12,16 @@ export const forgetPassword = async (
   // TODO: SEND EMAIL FOR USER
 
   const [user2, err2] = await req.knex(knex =>
-    knex('students')
-      .where({ id: email })
-      .update({
-        password: passwordHash,
-        updated_at: new Date(),
-      }),
+    knex('users').where({ id: email }).update({
+      password: passwordHash,
+      updated_at: new Date(),
+    }),
   );
   if (err2)
-    return res
-      .status(BAD_REQUEST)
-      .json({
-        statusCode: BAD_REQUEST,
-        err: err2?.message,
-      });
+    return res.status(BAD_REQUEST).json({
+      statusCode: BAD_REQUEST,
+      err: err2?.message,
+    });
   return res
     .status(OKE)
     .json({ statusCode: 200, data: user2 });
