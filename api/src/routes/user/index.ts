@@ -18,22 +18,10 @@ const router = Router();
 
 router
   .route('/users/login')
-  .post([
-    knexConnect,
-    query,
-    hashPassword,
-    mailTransporterConnect,
-    login,
-  ]);
+  .post([knexConnect, query, hashPassword, login]);
 router
   .route('/users/me')
-  .get([
-    knexConnect,
-    query,
-    hashPassword,
-    mailTransporterConnect,
-    me,
-  ]);
+  .get([knexConnect, query, hashPassword, me]);
 router
   .route('/users/approve/:userId')
   .post([
