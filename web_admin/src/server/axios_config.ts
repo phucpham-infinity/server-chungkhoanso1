@@ -1,15 +1,14 @@
 import Axios from "axios";
+import { LOCAL_VARIABLE } from "@/constant";
 
-const axios = Axios.create({
-  baseURL: "/api",
+export const axios = Axios.create({
+  baseURL: import.meta.env.VITE_BASE_URL,
 });
-
-axios.defaults.headers.common["Authorization"] = "AUTH TOKEN FROM INSTANCE";
 
 axios.interceptors.request.use(
   (config) => {
     if (!config.headers.Authorization) {
-      const token = localStorage.getItem("TOKEN");
+      const token = localStorage.getItem(LOCAL_VARIABLE.USER_TOKEN);
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
@@ -20,12 +19,10 @@ axios.interceptors.request.use(
 );
 
 axios.interceptors.response.use(
-  (response) => {
-    return response;
+  (response: any) => {
+    return response?.data || response;
   },
   (error) => {
     return Promise.reject(error);
   }
 );
-
-export default axios;

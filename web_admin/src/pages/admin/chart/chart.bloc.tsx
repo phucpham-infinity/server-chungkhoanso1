@@ -1,57 +1,60 @@
-import { pb } from "@/server";
-import { useState } from "react";
-import { isEmpty } from "lodash";
 import * as CK from "@chakra-ui/react";
-
+import { useMutation } from "@tanstack/react-query";
+import { axios } from "@/server";
 export interface IPublishForeignTransactions {
   purchasing_volume: number;
   sale_volume: number;
   sale_value: number;
   purchase_value: number;
-  version: number;
+  version: string;
+}
+
+export interface IChartVersionData {
+  name: string;
+  version: string;
 }
 
 export const useChartBloc = () => {
-  const [isLoadingPublish, setIsLoadingPublish] = useState(false);
-  const [errorPublish, setErrorPublish] = useState(null);
-  const [dataPublish, setDataPublish] = useState(null);
-
   const toast = CK.useToast();
 
-  const handlePublishForeignTransactions = async (
-    data: IPublishForeignTransactions
-  ) => {
-    setIsLoadingPublish(true);
-    setDataPublish(null);
-    setErrorPublish(null);
-    try {
-      const record = await pb
-        .collection("total_vol_value_foreign")
-        .create(data);
-      setDataPublish(record);
-      const data2 = await pb
-        .collection("chart_data_version")
-        .getList(1, 100, { query: { name: "total_vol_value_foreign" } , });
-      console.log("data2", data2);
-    } catch (error) {
-      setErrorPublish(error);
-      toast({
-        title: "Xuất bản thất bại",
-        description: error?.message || "Có lỗi xẩy ra!",
-        status: "error",
-        duration: 5000,
-        position: "top-right",
-        isClosable: true,
+  const handleAddChartData = useMutation(
+    (data: IPublishForeignTransactions) => {
+      return axios({
+        method: "POST",
+        url: "/table",
+        params: {
+          table: "total_vol_value_foreign",
+        },
+        data: data,
       });
-    } finally {
-      setIsLoadingPublish(false);
     }
+  );
+
+  const handleUpdateChartVersion = useMutation((data: IChartVersionData) => {
+    return axios({
+      method: "POST",
+      url: "/table",
+      params: {
+        table: "chart_data_version",
+      },
+      data: data,
+    });
+  });
+
+  const handlePublishChartData = async (data: IPublishForeignTransactions) => {
+    try {
+      await handleAddChartData.mutateAsync(data);
+      handleUpdateChartVersion.mutateAsync({
+        name: "total_vol_value_foreign",
+        version: data.version,
+      });
+    } catch (error) {}
   };
+
   return {
-    handlePublishForeignTransactions,
-    isLoadingPublish,
-    errorPublish,
-    isErrorPublish: isEmpty(errorPublish),
-    dataPublish,
+    handlePublishChartData,
+    handleAddChartData,
+    isLoading:
+      handleAddChartData.isLoading || handleUpdateChartVersion.isLoading,
   };
 };

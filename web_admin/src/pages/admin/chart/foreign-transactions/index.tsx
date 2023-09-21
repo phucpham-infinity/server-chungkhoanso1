@@ -78,17 +78,17 @@ const Chart1 = () => {
     }
   }, [summary]);
 
-  const { handlePublishForeignTransactions, isLoadingPublish } = useChartBloc();
+  const { handlePublishChartData, isLoading } = useChartBloc();
 
   const handlePublish = () => {
     onClose();
     const version = new Date().getTime();
-    handlePublishForeignTransactions({
+    handlePublishChartData({
       purchasing_volume: summary[0][1],
       sale_volume: summary[1][1],
       purchase_value: summary[2][1],
       sale_value: summary[3][1],
-      version: version,
+      version: String(version),
     });
   };
 
@@ -118,7 +118,7 @@ const Chart1 = () => {
           leftIcon={<MdSave />}
           colorScheme="green"
           onClick={onOpen}
-          isLoading={isLoadingPublish}
+          isLoading={isLoading}
         >
           Xuất bản
         </CK.Button>

@@ -2,12 +2,12 @@ import { Request, Response } from 'express';
 import { BAD_REQUEST, OKE } from '@/helpers';
 import { isEmpty, isObject, keys } from 'lodash';
 
-export const mergeDataByCol = async (
+export const mergeData = async (
   req: Request,
   res: Response,
 ) => {
   const table = req.qs?.table as string;
-  const col = (req.qs?.col as string) || 'id';
+  const conflict = (req.qs?.conflict as string) || 'id';
   const payload = req.body as any;
 
   if (isEmpty(payload) || !isObject(payload))
@@ -24,7 +24,7 @@ export const mergeDataByCol = async (
   const [data, err] = await req.knex(knex =>
     knex(table)
       .insert(payload, keys(payload) || ['*'])
-      .onConflict(col)
+      .onConflict(conflict)
       .merge(),
   );
   if (err)

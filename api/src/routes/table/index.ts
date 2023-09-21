@@ -3,8 +3,7 @@ import { knexConnect, query } from '@/middleware';
 
 import { getMany } from './controllers/getMany';
 import { getById } from './controllers/getById';
-import { mergeDataById } from './controllers/mergeDataById';
-import { mergeDataByCol } from './controllers/mergeDataByCol';
+import { mergeData } from './controllers/mergeData';
 
 import { deleteById } from './controllers/deleteById';
 
@@ -16,10 +15,8 @@ router
   .get([knexConnect, query, getById]);
 router
   .route('/table')
-  .post([knexConnect, query, mergeDataById]);
-router
-  .route('/table')
-  .patch([knexConnect, query, mergeDataByCol]);
+  .post([knexConnect, query, mergeData]);
+
 router
   .route('/table/:id')
   .delete([knexConnect, query, deleteById]);

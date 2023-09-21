@@ -1,9 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import { pb } from "@/server";
+import { axios } from "@/server";
 import { useToast } from "@chakra-ui/react";
 import { useEffect } from "react";
 import useAppStore from "@/store";
 import { useNavigate } from "react-router-dom";
+import { LOCAL_VARIABLE } from "@/constant";
 
 interface IUser {
   email: string;
@@ -14,7 +15,14 @@ const useAuthBloc = () => {
   const toast = useToast();
   const navigate = useNavigate();
   const handleLogin = useMutation((user: IUser) => {
-    return pb.collection("users").authWithPassword(user.email, user.password);
+    return axios({
+      method: "POST",
+      url: "/users/login",
+      data: {
+        email: user.email,
+        password: user.password,
+      },
+    });
   });
   const { setUser, setToken } = useAppStore();
 
@@ -34,9 +42,23 @@ const useAuthBloc = () => {
 
   useEffect(() => {
     if (handleLogin.data && handleLogin.isSuccess) {
-      setUser(handleLogin.data.record);
-      setToken(handleLogin.data.token);
-      navigate("/admin");
+      console.log("handleLogin.data", handleLogin.data);
+      if (handleLogin?.data?.data?.is_admin) {
+        setUser(handleLogin?.data?.data);
+        const token = (handleLogin?.data as any)?.token;
+        setToken(token);
+        localStorage.setItem(LOCAL_VARIABLE.USER_TOKEN, token);
+        navigate("/admin");
+      } else {
+        toast({
+          title: "Đăng nhập thất bại",
+          description: "Bạn có quyền truy cập trang web.",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+      }
     }
   }, [handleLogin.data, handleLogin.isSuccess]);
 

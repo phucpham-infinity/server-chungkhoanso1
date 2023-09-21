@@ -1,6 +1,6 @@
 import AdminLayout from "./admin.layout";
 import AuthenticationRouter from "@/components/authentication_router";
-import { RouteObject } from "react-router-dom";
+import { RouteObject, Navigate } from "react-router-dom";
 import Dashboard from "./dashboard";
 import ChartLayout from "./chart/chart.layout";
 import Chart1Page from "./chart/foreign-transactions";
@@ -13,6 +13,10 @@ const route: RouteObject = {
     </AuthenticationRouter>
   ),
   children: [
+    {
+      path: "/admin",
+      element: <Navigate to={"/admin/dashboard"} replace />,
+    },
     {
       path: "/admin/dashboard",
       element: <Dashboard />,
