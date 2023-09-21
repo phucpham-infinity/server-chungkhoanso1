@@ -4,6 +4,8 @@ import { knexConnect, query } from '@/middleware';
 import { getMany } from './controllers/getMany';
 import { getById } from './controllers/getById';
 import { mergeDataById } from './controllers/mergeDataById';
+import { mergeDataByCol } from './controllers/mergeDataByCol';
+
 import { deleteById } from './controllers/deleteById';
 
 const router = Router();
@@ -15,6 +17,9 @@ router
 router
   .route('/table')
   .post([knexConnect, query, mergeDataById]);
+router
+  .route('/table')
+  .patch([knexConnect, query, mergeDataByCol]);
 router
   .route('/table/:id')
   .delete([knexConnect, query, deleteById]);
