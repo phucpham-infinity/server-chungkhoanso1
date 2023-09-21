@@ -1,11 +1,12 @@
-import React from 'react'
 import { Outlet } from "react-router-dom";
+import * as CK from "@chakra-ui/react";
 
 const ChartLayout = () => {
   return (
-    <div>
-        <Outlet />
-    </div>
+    <CK.Box px={6} pt={{ base: "130px", md: "80px", xl: "80px" }}>
+      <Outlet />
+    </CK.Box>
+
   )
 }
 

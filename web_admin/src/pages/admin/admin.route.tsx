@@ -2,8 +2,8 @@ import AdminLayout from "./admin.layout";
 import AuthenticationRouter from "@/components/authentication_router";
 import { RouteObject } from "react-router-dom";
 import Dashboard from "./dashboard";
-import ChartLayout from './chart/chart.layout'
-import Chart1Page from './chart/chart_1'
+import ChartLayout from "./chart/chart.layout";
+import Chart1Page from "./chart/foreign-transactions";
 
 const route: RouteObject = {
   path: "/admin",
@@ -20,13 +20,12 @@ const route: RouteObject = {
     {
       path: "/admin/chart",
       element: <ChartLayout />,
-      children:[
+      children: [
         {
           path: "/admin/chart/chart_1",
-          element:<Chart1Page />
-        }
-      ]
-
+          element: <Chart1Page />,
+        },
+      ],
     },
   ],
 };
