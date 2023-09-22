@@ -11,7 +11,6 @@ interface IChart01 {
 
 const Chart01 = (props: IChart01) => {
   const { dataVol, dataValue } = props;
-  console.log("dataVol", dataVol);
 
   const renderCustomizedLabel = ({
     cx,

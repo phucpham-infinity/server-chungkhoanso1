@@ -7,6 +7,9 @@ import Chart01 from "@/components/charts/foreign-transactions-01";
 import { MdSave } from "react-icons/md";
 import { useChartBloc } from "@/pages/admin/chart/chart.bloc";
 
+import ForeignTop12 from "@/components/charts/foreign-top-12";
+import { isEmpty } from "lodash";
+
 const Chart1 = () => {
   // const summary =
   const [summary, setSummary] = useState(null);
@@ -37,9 +40,25 @@ const Chart1 = () => {
 
   const [dataVol, setDataVol] = useState(null);
   const [dataValue, setDataValue] = useState(null);
+  const [top12Data, setTop12Data] = useState(null);
 
   useEffect(() => {
-    if (detail) console.log("detail", detail);
+    if (detail) {
+      const data = [];
+      detail.forEach((x: any) => {
+        if (x[0]) {
+          data.push({
+            symbol: x[0],
+            vol: x[1],
+            value: x[2],
+            exchange: x[3],
+            order: x[4],
+            type: x[5],
+          });
+        }
+      });
+      setTop12Data(data);
+    }
   }, [detail]);
 
   const { isOpen, onOpen, onClose } = CK.useDisclosure();
@@ -125,6 +144,13 @@ const Chart1 = () => {
       </CK.HStack>
       {dataValue && dataVol && (
         <Chart01 dataValue={dataValue} dataVol={dataVol} />
+      )}
+
+      {!isEmpty(top12Data) && (
+        <ForeignTop12 type="buy" data={top12Data.slice(1)} />
+      )}
+      {!isEmpty(top12Data) && (
+        <ForeignTop12 type="sell" data={top12Data.slice(1)} />
       )}
 
       <CK.AlertDialog

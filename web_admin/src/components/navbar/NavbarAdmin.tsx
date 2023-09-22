@@ -31,7 +31,7 @@ export default function AdminNavbar(props: {
     };
   });
 
-  const { secondary, brandText, user, onLogout , pageText} = props;
+  const { secondary, brandText, user, onLogout, pageText } = props;
 
   // Here are all the props that may change depending on navbar's type or state.(secondary, variant, scrolled)
   let mainText = useColorModeValue("navy.700", "white");
@@ -98,6 +98,7 @@ export default function AdminNavbar(props: {
         xl: "calc(100vw - 350px)",
         "2xl": "calc(100vw - 365px)",
       }}
+      zIndex={9}
     >
       <Flex
         w="100%"
@@ -123,26 +124,25 @@ export default function AdminNavbar(props: {
             </BreadcrumbItem>
           </Breadcrumb>
           <Box pt={1}>
-          <Link
-            color={mainText}
-            href="#"
-            bg="inherit"
-            borderRadius="inherit"
-            fontWeight="bold"
-            fontSize="34px"
-          
-            _hover={{ color: { mainText } }}
-            _active={{
-              bg: "inherit",
-              transform: "none",
-              borderColor: "transparent",
-            }}
-            _focus={{
-              boxShadow: "none",
-            }}
-          >
-            {pageText}
-          </Link>
+            <Link
+              color={mainText}
+              href="#"
+              bg="inherit"
+              borderRadius="inherit"
+              fontWeight="bold"
+              fontSize="34px"
+              _hover={{ color: { mainText } }}
+              _active={{
+                bg: "inherit",
+                transform: "none",
+                borderColor: "transparent",
+              }}
+              _focus={{
+                boxShadow: "none",
+              }}
+            >
+              {pageText}
+            </Link>
           </Box>
         </Box>
         <Box ms="auto" w={{ sm: "100%", md: "unset" }}>

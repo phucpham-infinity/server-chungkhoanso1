@@ -42,7 +42,6 @@ const useAuthBloc = () => {
 
   useEffect(() => {
     if (handleLogin.data && handleLogin.isSuccess) {
-      console.log("handleLogin.data", handleLogin.data);
       if (handleLogin?.data?.data?.is_admin) {
         setUser(handleLogin?.data?.data);
         const token = (handleLogin?.data as any)?.token;

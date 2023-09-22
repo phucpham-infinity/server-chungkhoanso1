@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useAppStore from "@/store";
 import { Navigate } from "react-router-dom";
 import * as CK from "@chakra-ui/react";
 import { axios } from "@/server";
 import { LOCAL_VARIABLE } from "@/constant";
+import { useQuery } from "@tanstack/react-query";
+import { isEmpty, isError } from "lodash";
 
 interface IAuthenticationRouter {
   children: React.ReactElement;
@@ -15,30 +17,39 @@ const AuthenticationRouter = (props: IAuthenticationRouter) => {
   const { children, replaceTo = "/", isUnAuthorized } = props;
   const isAuthenticated = useAppStore((s) => s.isAuthenticated);
 
-  const [isLoading, setIsLoading] = React.useState(true);
   const { setUser, setToken, setError } = useAppStore();
 
-  const getMe = async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios({
+  const { isSuccess, data, error } = useQuery({
+    queryKey: ["me"],
+    queryFn: () => {
+      return axios({
         url: "/users/me",
         method: "GET",
       });
-      if (response?.data?.is_admin) {
-        setUser(response?.data);
+    },
+  });
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (isSuccess && !isEmpty(data)) {
+      if (data.data.is_admin) {
+        setUser(data.data);
         setToken(localStorage.getItem(LOCAL_VARIABLE.USER_TOKEN));
+        setIsLoading(false);
+      } else {
+        setError(new Error("Admin permission required"));
+        setIsLoading(false);
       }
-    } catch (error) {
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (isError && !isEmpty(error)) {
       setError(error);
-    } finally {
       setIsLoading(false);
     }
-  };
-
-  React.useEffect(() => {
-    getMe();
-  }, []);
+  }, [isError]);
 
   if (isLoading) {
     return <CK.Text>Loading...</CK.Text>;
