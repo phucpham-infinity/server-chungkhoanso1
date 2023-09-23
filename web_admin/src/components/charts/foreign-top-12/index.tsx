@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import * as CK from "@chakra-ui/react";
+import numeral from "numeral";
 
 import {
   Bar,
-  Tooltip,
   ResponsiveContainer,
   CartesianGrid,
   XAxis,
   YAxis,
-  Legend,
   Line,
   ComposedChart,
+  LabelList,
 } from "recharts";
 
 interface IForeignTop12 {
   data?: any;
   type: "buy" | "sell";
+  name: string;
+  color?: string;
 }
 
 const CustomizedTick = ({ x, y, payload, offsetX }: any) => {
@@ -33,9 +35,50 @@ const CustomizedLabel = ({ x, y, label, viewBox }: any) => {
     </text>
   );
 };
-const ForeignTop12 = (props: IForeignTop12) => {
-  const { data, type = "buy" } = props;
+const CustomizedLabelList = (props: any) => {
+  const { x, y, value } = props;
+  return (
+    <text fontWeight={600} y={y - 10} x={x + 4}>
+      {numeral(Number(value) / 100000).format("0,0.0")}
+    </text>
+  );
+};
+const CustomizedDot = (props) => {
+  const { cx, cy, stroke, payload, value } = props;
+  return (
+    <svg
+      x={cx}
+      y={cy}
+      width={100}
+      height={100}
+      fill="green"
+      viewBox="0 0 1024 1024"
+    >
+      <circle r="70" stroke="white" stroke-width="2" fill="white" />
+      <text
+        x="50"
+        y="-120"
+        text-anchor="middle"
+        font-size="120"
+        fontWeight={600}
+        fill="#E4AA0A"
+      >
+        {numeral(Number(value) / 100000).format("0,0.0")}
+      </text>
+    </svg>
+  );
+};
 
+const CustomizedAxisTick = (props: any) => {
+  const { x, y, stroke, payload, width } = props;
+  return (
+    <text x={x + 18} y={y + 20} fontWeight={600} textAnchor="end" fill="#666">
+      {payload.value}
+    </text>
+  );
+};
+const ForeignTop12 = (props: IForeignTop12) => {
+  const { data, type = "buy", name, color = "#18712C" } = props;
   const [exchange, setExchange] = useState("HOSE");
 
   return (
@@ -52,8 +95,7 @@ const ForeignTop12 = (props: IForeignTop12) => {
           <option value="HNX">SÀN HNX</option>
         </CK.Select>
       </CK.HStack>
-
-      <CK.Box w={"full"} pt={"40px"} h={"500px"}>
+      <CK.Box w={"full"} pt={"35px"} h={"300px"}>
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             data={data
@@ -61,7 +103,7 @@ const ForeignTop12 = (props: IForeignTop12) => {
               .filter((y: any) => y.type === type)}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="symbol" />
+            <XAxis tick={<CustomizedAxisTick />} dataKey="symbol" />
             <YAxis
               label={<CustomizedLabel label="(KL) triệu CP" />}
               type="number"
@@ -75,17 +117,27 @@ const ForeignTop12 = (props: IForeignTop12) => {
               yAxisId="2"
               tick={<CustomizedTick offsetX={10} />}
             />
-            <Tooltip />
-            <Legend />
-            <Bar barSize={40} yAxisId="1" dataKey="vol" fill="#18712C" />
+            {/* <Tooltip /> */}
+
+            {/* <Legend /> */}
+            <Bar barSize={40} yAxisId="1" dataKey="vol" fill={color}>
+              <LabelList dataKey="vol" content={CustomizedLabelList} />
+            </Bar>
             <Line
+              dot={<CustomizedDot />}
               yAxisId="2"
               type="monotone"
               dataKey="value"
-              stroke="#ff7300"
+              strokeWidth={3}
+              stroke="#E4AA0A"
             />
           </ComposedChart>
         </ResponsiveContainer>
+        <CK.VStack py="3">
+          <CK.Text fontSize={"18px"} fontWeight={700}>
+            {name} {exchange}
+          </CK.Text>
+        </CK.VStack>
       </CK.Box>
     </CK.VStack>
   );

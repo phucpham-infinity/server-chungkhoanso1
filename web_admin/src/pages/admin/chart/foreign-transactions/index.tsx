@@ -103,11 +103,14 @@ const Chart1 = () => {
     onClose();
     const version = new Date().getTime();
     handlePublishChartData({
-      purchasing_volume: summary[0][1],
-      sale_volume: summary[1][1],
-      purchase_value: summary[2][1],
-      sale_value: summary[3][1],
+      total: {
+        purchasing_volume: summary[0][1],
+        sale_volume: summary[1][1],
+        purchase_value: summary[2][1],
+        sale_value: summary[3][1],
+      },
       version: String(version),
+      top: top12Data.slice(1),
     });
   };
 
@@ -147,10 +150,20 @@ const Chart1 = () => {
       )}
 
       {!isEmpty(top12Data) && (
-        <ForeignTop12 type="buy" data={top12Data.slice(1)} />
+        <ForeignTop12
+          name="TOP 12 CP NĐT NN MUA NHIỀU NHẤT SÀN"
+          type="buy"
+          data={top12Data.slice(1)}
+          color="#18712C"
+        />
       )}
       {!isEmpty(top12Data) && (
-        <ForeignTop12 type="sell" data={top12Data.slice(1)} />
+        <ForeignTop12
+          name="TOP 12 CP NĐT NN BÁN NHIỀU NHẤT SÀN"
+          type="sell"
+          data={top12Data.slice(1)}
+          color="#D44B20"
+        />
       )}
 
       <CK.AlertDialog

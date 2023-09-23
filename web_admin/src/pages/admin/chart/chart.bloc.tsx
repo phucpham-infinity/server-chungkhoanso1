@@ -3,11 +3,21 @@ import { useMutation } from "@tanstack/react-query";
 import { axios } from "@/server";
 import { useEffect } from "react";
 export interface IPublishForeignTransactions {
-  purchasing_volume: number;
-  sale_volume: number;
-  sale_value: number;
-  purchase_value: number;
-  version: string;
+  total?: {
+    purchasing_volume?: number;
+    sale_volume?: number;
+    sale_value?: number;
+    purchase_value?: number;
+  };
+  version?: string;
+  top?: {
+    symbol?: string;
+    vol?: number;
+    value?: number;
+    exchange?: string;
+    order?: number;
+    type?: string;
+  }[];
 }
 
 export interface IChartVersionData {
@@ -20,14 +30,25 @@ export const useChartBloc = () => {
 
   const handleAddChartData = useMutation(
     (data: IPublishForeignTransactions) => {
-      return axios({
-        method: "POST",
-        url: "/table",
-        params: {
-          table: "total_vol_value_foreign",
-        },
-        data: data,
-      });
+      const process = [
+        axios({
+          method: "POST",
+          url: "/table",
+          params: {
+            table: "total_vol_value_foreign",
+          },
+          data: { ...data?.total, version: data?.version },
+        }),
+        axios({
+          method: "POST",
+          url: "/table",
+          params: {
+            table: "top_12_foreign",
+          },
+          data: data?.top?.map((x) => ({ ...x, version: data?.version })),
+        }),
+      ];
+      return Promise.all(process);
     }
   );
 
@@ -46,7 +67,7 @@ export const useChartBloc = () => {
   const handlePublishChartData = (data: IPublishForeignTransactions) => {
     handleAddChartData.mutateAsync(data).then(() => {
       handleUpdateChartVersion.mutateAsync({
-        name: "total_vol_value_foreign",
+        name: "total_top_vol_value_foreign",
         version: data.version,
       });
     });

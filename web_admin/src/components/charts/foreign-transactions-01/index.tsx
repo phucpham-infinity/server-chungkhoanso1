@@ -40,10 +40,10 @@ const Chart01 = (props: IChart01) => {
       borderRadius={"10px"}
       pb={"40px"}
       pt={"10px"}
-      spacing={"0px"}
+      spacing={"30px"}
     >
       <CK.VStack alignItems={"flex-start"}>
-        <CK.Box position={"relative"} w={"400px"} h={"200px"}>
+        <CK.Box position={"relative"} w={"400px"} h={"250px"}>
           <CK.Box
             bottom={"10px"}
             left={"50%"}
@@ -75,8 +75,8 @@ const Chart01 = (props: IChart01) => {
                 data={dataVol}
                 cx="50%"
                 cy="100%"
-                innerRadius={80}
-                outerRadius={110}
+                innerRadius={100}
+                outerRadius={140}
                 fill="#8884d8"
               >
                 {dataVol.map((entry, index) => {
@@ -124,7 +124,7 @@ const Chart01 = (props: IChart01) => {
         </CK.VStack>
       </CK.VStack>
       <CK.VStack alignItems={"flex-start"}>
-        <CK.Box position={"relative"} w={"400px"} h={"200px"}>
+        <CK.Box position={"relative"} w={"400px"} h={"250px"}>
           <CK.Box
             bottom={"10px"}
             left={"50%"}
@@ -147,7 +147,7 @@ const Chart01 = (props: IChart01) => {
             </CK.Text>
           </CK.Box>
           <ResponsiveContainer width="100%" height="100%">
-            <PieChart width={400} height={300}>
+            <PieChart width={400} height={400}>
               <Pie
                 dataKey="value"
                 startAngle={180}
@@ -156,8 +156,8 @@ const Chart01 = (props: IChart01) => {
                 label={renderCustomizedLabel}
                 cx="50%"
                 cy="100%"
-                innerRadius={80}
-                outerRadius={110}
+                innerRadius={100}
+                outerRadius={140}
                 fill="#8884d8"
               >
                 {dataValue.map((entry, index) => {
