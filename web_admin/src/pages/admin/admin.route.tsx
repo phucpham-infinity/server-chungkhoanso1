@@ -4,6 +4,7 @@ import { RouteObject, Navigate } from "react-router-dom";
 import Dashboard from "./dashboard";
 import ChartLayout from "./chart/chart.layout";
 import Chart1Page from "./chart/foreign-transactions";
+import CapitalizationPage from "./chart/capitalization";
 
 const route: RouteObject = {
   path: "/admin",
@@ -28,6 +29,10 @@ const route: RouteObject = {
         {
           path: "/admin/chart/chart_1",
           element: <Chart1Page />,
+        },
+        {
+          path: "/admin/chart/capitalization",
+          element: <CapitalizationPage />,
         },
       ],
     },

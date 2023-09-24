@@ -1,13 +1,13 @@
 import Sidebar from "@/components/sidebar/Sidebar";
 import * as CK from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
-import { BiHomeAlt2 , BiBarChartAlt2 } from "react-icons/bi";
+import { BiHomeAlt2, BiBarChartAlt2 } from "react-icons/bi";
 import Navbar from "@/components/navbar/NavbarAdmin";
 import useAdminBloc from "./admin.bloc";
 
 const AdminPage = () => {
   const { onOpen } = CK.useDisclosure();
-  const { handleLogout, user , title, title1} = useAdminBloc();
+  const { handleLogout, user, title, title1 } = useAdminBloc();
 
   return (
     <CK.Box>
@@ -29,6 +29,19 @@ const AdminPage = () => {
           {
             name: "Thống kê giao dịch",
             path: "/chart/chart_1",
+            layout: "/admin",
+            icon: (
+              <CK.Icon
+                as={BiBarChartAlt2}
+                width="24px"
+                height="24px"
+                color="inherit"
+              />
+            ),
+          },
+          {
+            name: "CP vốn hóa / GTDG",
+            path: "/chart/capitalization",
             layout: "/admin",
             icon: (
               <CK.Icon
@@ -64,7 +77,7 @@ const AdminPage = () => {
               }}
               user={user}
               onOpen={onOpen}
-              logoText={"Horizon UI Dashboard PRO"}
+              logoText={"Dashboard"}
               brandText={title1}
               pageText={title}
               fixed={false}

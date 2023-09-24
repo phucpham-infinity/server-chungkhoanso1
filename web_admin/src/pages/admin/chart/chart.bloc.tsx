@@ -73,8 +73,43 @@ export const useChartBloc = () => {
     });
   };
 
+  const handleAddTop10TableData = useMutation(
+    (payload: { version: string; data: any[] }) => {
+      const process = [
+        axios({
+          method: "POST",
+          url: "/table",
+          params: {
+            table: "top_10_capitalization",
+          },
+          data: payload?.data?.map((x) => ({
+            ...x,
+            version: payload?.version,
+          })),
+        }),
+      ];
+      return Promise.all(process);
+    }
+  );
+
+  const handlePublishTop10TableData = (payload: {
+    version: string;
+    data: any[];
+  }) => {
+    handleAddTop10TableData.mutateAsync(payload).then(() => {
+      handleUpdateChartVersion.mutateAsync({
+        name: "top_10_capitalization",
+        version: payload.version,
+      });
+    });
+  };
+
   useEffect(() => {
-    if (handleAddChartData.isError || handleUpdateChartVersion.isError) {
+    if (
+      handleAddChartData.isError ||
+      handleUpdateChartVersion.isError ||
+      handleAddTop10TableData.isError
+    ) {
       toast({
         title: "Có lỗi xẩy ra.",
         description:
@@ -104,7 +139,10 @@ export const useChartBloc = () => {
   return {
     handlePublishChartData,
     handleAddChartData,
+    handlePublishTop10TableData,
     isLoading:
-      handleAddChartData.isLoading || handleUpdateChartVersion.isLoading,
+      handleAddChartData.isLoading ||
+      handleUpdateChartVersion.isLoading ||
+      handleAddTop10TableData.isLoading,
   };
 };
