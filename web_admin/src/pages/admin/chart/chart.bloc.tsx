@@ -104,17 +104,51 @@ export const useChartBloc = () => {
     });
   };
 
+  const handleAddIndustryData = useMutation(
+    (payload: { version: string; data: any[] }) => {
+      const process = [
+        axios({
+          method: "POST",
+          url: "/table",
+          params: {
+            table: "statistic_industry",
+          },
+          data: payload?.data?.map((x) => ({
+            ...x,
+            version: payload?.version,
+          })),
+        }),
+      ];
+      return Promise.all(process);
+    }
+  );
+
+  const handlePublishIndustryData = (payload: {
+    version: string;
+    data: any[];
+  }) => {
+    handleAddIndustryData.mutateAsync(payload).then(() => {
+      handleUpdateChartVersion.mutateAsync({
+        name: "statistic_industry",
+        version: payload.version,
+      });
+    });
+  };
+
   useEffect(() => {
     if (
       handleAddChartData.isError ||
       handleUpdateChartVersion.isError ||
-      handleAddTop10TableData.isError
+      handleAddTop10TableData.isError ||
+      handleAddIndustryData.isError
     ) {
       toast({
         title: "Có lỗi xẩy ra.",
         description:
           String(handleAddChartData.error) ||
-          String(handleUpdateChartVersion.error),
+          String(handleUpdateChartVersion.error) ||
+          String(handleAddTop10TableData.error) ||
+          String(handleAddIndustryData.error),
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -140,9 +174,11 @@ export const useChartBloc = () => {
     handlePublishChartData,
     handleAddChartData,
     handlePublishTop10TableData,
+    handlePublishIndustryData,
     isLoading:
       handleAddChartData.isLoading ||
       handleUpdateChartVersion.isLoading ||
-      handleAddTop10TableData.isLoading,
+      handleAddTop10TableData.isLoading ||
+      handleAddIndustryData.isLoading,
   };
 };

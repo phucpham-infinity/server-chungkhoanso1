@@ -1,7 +1,10 @@
 import ErrorPage from "@/components/error_page";
 import { RouteObject } from "react-router-dom";
-import ForeignPage from "./foreign";
 import StatisticLayout from "./statistic.layout";
+
+import ForeignPage from "./foreign";
+import CapitalizationPage from "./capitalization";
+import IndustryPage from "./industry";
 
 const route: RouteObject = {
   path: "/statistic",
@@ -11,6 +14,14 @@ const route: RouteObject = {
     {
       path: "/statistic/foreign",
       element: <ForeignPage />,
+    },
+    {
+      path: "/statistic/capitalization",
+      element: <CapitalizationPage />,
+    },
+    {
+      path: "/statistic/industry",
+      element: <IndustryPage />,
     },
   ],
 };

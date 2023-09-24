@@ -23,6 +23,9 @@ const useAdminBloc = () => {
     if (location.pathname.includes("/capitalization")) {
       setTitle("CP vốn hóa / GTDG");
     }
+    if (location.pathname.includes("/industry")) {
+      setTitle("Thống kê ngành nghề");
+    }
     if (location.pathname.includes("/dashboard")) {
       setTitle("Dashboard");
       setTitle1("");

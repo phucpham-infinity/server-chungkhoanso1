@@ -4,11 +4,12 @@ import { BiCloudUpload } from "react-icons/bi";
 import * as XLSX from "xlsx";
 
 import Chart01 from "@/components/charts/foreign-transactions-01";
-import { MdSave } from "react-icons/md";
+import { MdRemoveRedEye, MdSave } from "react-icons/md";
 import { useChartBloc } from "@/pages/admin/chart/chart.bloc";
 
 import ForeignTop12 from "@/components/charts/foreign-top-12";
 import { isEmpty } from "lodash";
+import { useNavigate } from "react-router-dom";
 
 const Chart1 = () => {
   // const summary =
@@ -114,6 +115,8 @@ const Chart1 = () => {
     });
   };
 
+  const navigate = useNavigate();
+
   return (
     <CK.VStack alignItems={"flex-start"}>
       <CK.HStack w={"full"} justifyContent={"space-between"}>
@@ -135,15 +138,25 @@ const Chart1 = () => {
             <CK.Text>{file?.name}</CK.Text>
           </CK.HStack>
         </CK.HStack>
-        <CK.Button
-          isDisabled={!dataValue}
-          leftIcon={<MdSave />}
-          colorScheme="green"
-          onClick={onOpen}
-          isLoading={isLoading}
-        >
-          Xuất bản
-        </CK.Button>
+        <CK.HStack>
+          <CK.Button
+            isDisabled={!dataValue}
+            leftIcon={<MdSave />}
+            colorScheme="green"
+            onClick={onOpen}
+            isLoading={isLoading}
+          >
+            Xuất bản
+          </CK.Button>
+          <CK.Button
+            leftIcon={<MdRemoveRedEye />}
+            colorScheme="blue"
+            onClick={() => navigate("/statistic/foreign")}
+            isLoading={isLoading}
+          >
+            Xem
+          </CK.Button>
+        </CK.HStack>
       </CK.HStack>
       {dataValue && dataVol && (
         <Chart01 dataValue={dataValue} dataVol={dataVol} />

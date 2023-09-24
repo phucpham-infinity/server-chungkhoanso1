@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as CK from "@chakra-ui/react";
 import { BiCloudUpload } from "react-icons/bi";
 import * as XLSX from "xlsx";
 
-import { MdSave } from "react-icons/md";
+import { MdSave, MdRemoveRedEye } from "react-icons/md";
 import { useChartBloc } from "@/pages/admin/chart/chart.bloc";
 
 const Chart1 = () => {
@@ -28,6 +29,7 @@ const Chart1 = () => {
 
   useEffect(() => {
     if (summary) {
+      console.log("summary", summary);
     }
   }, [summary]);
 
@@ -36,6 +38,8 @@ const Chart1 = () => {
   const handlePublish = () => {
     onClose();
   };
+
+  const navigate = useNavigate();
 
   return (
     <CK.VStack alignItems={"flex-start"}>
@@ -58,15 +62,25 @@ const Chart1 = () => {
             <CK.Text>{file?.name}</CK.Text>
           </CK.HStack>
         </CK.HStack>
-        <CK.Button
-          isDisabled={true}
-          leftIcon={<MdSave />}
-          colorScheme="green"
-          onClick={onOpen}
-          isLoading={isLoading}
-        >
-          Xuất bản
-        </CK.Button>
+        <CK.HStack>
+          <CK.Button
+            isDisabled={false}
+            leftIcon={<MdSave />}
+            colorScheme="green"
+            onClick={onOpen}
+            isLoading={isLoading}
+          >
+            Xuất bản
+          </CK.Button>
+          <CK.Button
+            leftIcon={<MdRemoveRedEye />}
+            colorScheme="blue"
+            onClick={() => navigate("/statistic/capitalization")}
+            isLoading={isLoading}
+          >
+            Xem
+          </CK.Button>
+        </CK.HStack>
       </CK.HStack>
 
       <CK.AlertDialog

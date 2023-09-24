@@ -2,16 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import * as CK from "@chakra-ui/react";
 import { BiCloudUpload } from "react-icons/bi";
 import * as XLSX from "xlsx";
+import { useNavigate } from "react-router-dom";
+import { convertToSnakeCase } from "@/helper";
 
 import { MdSave, MdRemoveRedEye } from "react-icons/md";
 import { useChartBloc } from "@/pages/admin/chart/chart.bloc";
-
-import CapitalizationTable from "@/components/charts/capitalization";
+import IndustryChart from "@/components/charts/industry";
 import { isEmpty } from "lodash";
-import { useNavigate } from "react-router-dom";
 
 const Chart1 = () => {
-  const [xlsxData, setXlsxData] = useState(null);
+  const [summary, setSummary] = useState(null);
   const [file, setFile] = useState<any>(null);
 
   const handleReadFile = async (e: any) => {
@@ -24,32 +24,33 @@ const Chart1 = () => {
       header: 1,
       defval: "",
     });
-    setXlsxData(jsonData0.slice(1));
+    setSummary(jsonData0);
   };
 
   const { isOpen, onOpen, onClose } = CK.useDisclosure();
   const cancelRef = useRef();
 
-  const [tableData, setTableData] = useState([]);
+  const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    if (xlsxData) {
-      const jsonData = xlsxData.map((x: any) => ({
-        code: x[0],
-        percent: x[1],
-        point: x[2],
-        type: x[3],
-      }));
-      setTableData(jsonData);
+    if (summary) {
+      setChartData(
+        summary.map((x: any) => ({
+          code: convertToSnakeCase(x[0]),
+          label: x[0],
+          value: x[1],
+          color: x[2],
+        }))
+      );
     }
-  }, [xlsxData]);
+  }, [summary]);
 
-  const { handlePublishTop10TableData, isLoading } = useChartBloc();
+  const { handlePublishIndustryData, isLoading } = useChartBloc();
 
   const handlePublish = () => {
-    handlePublishTop10TableData({
+    handlePublishIndustryData({
       version: String(new Date().getTime()),
-      data: tableData,
+      data: chartData,
     });
     onClose();
   };
@@ -79,7 +80,7 @@ const Chart1 = () => {
         </CK.HStack>
         <CK.HStack>
           <CK.Button
-            isDisabled={isEmpty(tableData)}
+            isDisabled={isEmpty(chartData)}
             leftIcon={<MdSave />}
             colorScheme="green"
             onClick={onOpen}
@@ -90,7 +91,7 @@ const Chart1 = () => {
           <CK.Button
             leftIcon={<MdRemoveRedEye />}
             colorScheme="blue"
-            onClick={() => navigate("/statistic/capitalization")}
+            onClick={() => navigate("/statistic/industry")}
             isLoading={isLoading}
           >
             Xem
@@ -98,20 +99,9 @@ const Chart1 = () => {
         </CK.HStack>
       </CK.HStack>
 
-      <CK.VStack spacing={10} w={"full"} mt={4}>
-        {!isEmpty(tableData) && (
-          <CapitalizationTable
-            data={tableData.filter((x) => x.type !== "capitalization")}
-          />
-        )}
-        {!isEmpty(tableData) && (
-          <CapitalizationTable
-            headerColor="#029DE0"
-            rowColors={["#E6F5FC", "white"]}
-            data={tableData.filter((x) => x.type !== "value")}
-          />
-        )}
-      </CK.VStack>
+      <CK.HStack mt={8} w={"full"}>
+        {!isEmpty(chartData) && <IndustryChart data={chartData} />}
+      </CK.HStack>
 
       <CK.AlertDialog
         isOpen={isOpen}
