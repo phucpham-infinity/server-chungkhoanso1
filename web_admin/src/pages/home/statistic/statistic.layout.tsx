@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
 import * as CK from "@chakra-ui/react";
-import IndexPrices from "@/components/index_prices";
 import { format } from "date-fns";
+import Bg01 from "@/assets/images/bg-01.svg";
+import IndexPrices from "@/components/index_prices";
 
 const Layout = () => {
   return (
@@ -9,12 +10,16 @@ const Layout = () => {
       <CK.VStack
         w={"full"}
         borderRadius={12}
-        p={5}
+        px={6}
+        py={9}
         bgColor={"black"}
         alignItems={"flex-start"}
         color={"white"}
         spacing={1}
+        position={"relative"}
+        overflow={"hidden"}
       >
+        <CK.Image position={"absolute"} right={0} top={0} src={Bg01} />
         <CK.Text fontSize={"24px"} fontWeight={700}>
           TỔNG QUAN
         </CK.Text>
