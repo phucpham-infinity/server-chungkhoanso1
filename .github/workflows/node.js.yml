@@ -51,5 +51,5 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             cd /root/app/server-chungkhoanso1
-            git pull
+            git reset --hard origin/main
             make up
