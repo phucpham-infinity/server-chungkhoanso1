@@ -4,7 +4,7 @@ import { axios } from "@/server";
 export const useBloc = () => {
   const { isLoading, data } = useQuery({
     queryKey: ["vndirect_change_prices"],
-
+    refetchInterval: 50000,
     queryFn: () => {
       return axios<any, any>({
         baseURL:

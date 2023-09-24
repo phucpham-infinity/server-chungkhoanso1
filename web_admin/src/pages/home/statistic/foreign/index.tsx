@@ -27,6 +27,7 @@ const Foreign = () => {
         Các tin tức đáng chú ý
       </CK.Text>
       <CK.VStack
+        w={"full"}
         border={"1px solid var(--troke, #DADCE0)"}
         p={4}
         bgColor={"white"}
@@ -53,7 +54,7 @@ const Foreign = () => {
           Quét mã code để xem đầy đủ nội dung
         </CK.Text>
 
-        <CK.HStack spacing={10}>
+        <CK.HStack w={"full"} spacing={10}>
           <CK.HStack>
             <CK.Image w={"160px"} h={"160px"} src={QRCode} />
             <CK.Text fontSize={"16px"} fontWeight={400}>
@@ -78,6 +79,7 @@ const Foreign = () => {
         bgColor={"white"}
         borderRadius={10}
         alignItems={"flex-start"}
+        mt={5}
       >
         <CK.HStack spacing={10} alignItems={"flex-start"}>
           <CK.VStack alignItems={"flex-start"}>
@@ -106,7 +108,7 @@ const Foreign = () => {
             />
           </CK.Center>
         ) : (
-          <CK.HStack alignItems={"flex-start"} w={"full"} py={4}>
+          <CK.HStack mt={3} alignItems={"flex-start"} w={"full"} py={4}>
             <ForeignTransactions
               dataValue={[
                 {
@@ -129,7 +131,7 @@ const Foreign = () => {
                 },
               ]}
             />
-            <CK.VStack spacing={10} w={"full"}>
+            <CK.VStack px={4} spacing={10} w={"full"}>
               {!isEmpty(dataTop12Foreign) && (
                 <ForeignTop12
                   name="TOP 12 CP NĐT NN MUA NHIỀU NHẤT SÀN"

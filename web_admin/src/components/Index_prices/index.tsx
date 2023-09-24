@@ -1,4 +1,3 @@
-import React from "react";
 import * as CK from "@chakra-ui/react";
 import { useBloc } from "./bloc";
 import numeral from "numeral";
@@ -8,7 +7,9 @@ import HLine from "@/assets/images/h-line.svg";
 const IndexPrices = () => {
   const { data, isLoading } = useBloc();
   return isLoading ? (
-    <CK.Spinner />
+    <CK.Center minH={"100px"} w={"full"}>
+      <CK.Spinner />
+    </CK.Center>
   ) : (
     <CK.HStack w={"full"} justifyContent={"space-between"}>
       {data.map((x: any) => (

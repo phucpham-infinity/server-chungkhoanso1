@@ -83,7 +83,7 @@ const ForeignTop12 = (props: IForeignTop12) => {
 
   return (
     <CK.VStack sx={{ svg: { overflow: "initial" } }} w={"full"}>
-      <CK.HStack w={"full"} justifyContent={"flex-end"}>
+      <CK.HStack w={"100%"} justifyContent={"flex-end"}>
         <CK.Select
           w={"160px"}
           variant={"filled"}
