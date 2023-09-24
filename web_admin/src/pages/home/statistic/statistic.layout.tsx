@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import * as CK from "@chakra-ui/react";
+import IndexPrices from "@/components/index_prices";
 
 const Layout = () => {
   return (
@@ -29,7 +30,9 @@ const Layout = () => {
           </CK.Text>
         </CK.HStack>
       </CK.VStack>
-
+      <CK.Box mt={5} w={"full"}>
+        <IndexPrices />
+      </CK.Box>
       <Outlet />
     </CK.VStack>
   );

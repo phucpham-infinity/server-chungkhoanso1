@@ -1,5 +1,6 @@
 import * as CK from "@chakra-ui/react";
 import format from "date-fns/format";
+import { isEmpty } from "lodash";
 
 import QRCode from "@/assets/images/qr-code.png";
 import AppStore from "@/assets/images/app-store.png";
@@ -10,7 +11,6 @@ import { useStatisticBloc } from "@/pages/home/statistic/statistic.bloc";
 
 import ForeignTransactions from "@/components/charts/foreign-transactions-01";
 import ForeignTop12 from "@/components/charts/foreign-top-12";
-import { isEmpty } from "lodash";
 
 const Foreign = () => {
   const {
@@ -23,7 +23,9 @@ const Foreign = () => {
 
   return (
     <CK.VStack alignItems={"flex-start"} w={"full"} pt={3}>
-      <CK.Text>Các tin tức đáng chú ý</CK.Text>
+      <CK.Text fontSize={"24px"} fontWeight={700}>
+        Các tin tức đáng chú ý
+      </CK.Text>
       <CK.VStack
         border={"1px solid var(--troke, #DADCE0)"}
         p={4}
