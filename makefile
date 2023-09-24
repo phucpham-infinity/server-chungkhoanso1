@@ -5,4 +5,4 @@ up-api:
 up-all:
 	cd prod && docker compose up -d --no-deps --build api --build nginx
 up:
-	cd prod && docker compose up -d && docker compose up -d --no-deps --build api
+	cd prod && docker compose up -d --no-deps --build api
