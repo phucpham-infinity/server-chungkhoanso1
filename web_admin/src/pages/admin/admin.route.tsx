@@ -6,6 +6,7 @@ import ChartLayout from "./chart/chart.layout";
 import Chart1Page from "./chart/foreign-transactions";
 import CapitalizationPage from "./chart/capitalization";
 import IndustryPage from "./chart/industry";
+import ProprietaryPage from "./chart/proprietary";
 
 const route: RouteObject = {
   path: "/admin",
@@ -38,6 +39,10 @@ const route: RouteObject = {
         {
           path: "/admin/chart/industry",
           element: <IndustryPage />,
+        },
+        {
+          path: "/admin/chart/proprietary",
+          element: <ProprietaryPage />,
         },
       ],
     },

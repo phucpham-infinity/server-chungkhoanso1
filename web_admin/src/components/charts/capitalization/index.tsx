@@ -41,7 +41,6 @@ const Capitalization = (props: ICapitalization) => {
           bgColor: headerColor,
         }}
         headerThSx={(row) => {
-          console.log("row", row);
           return {
             color: "white",
             fontWeight: 700,

@@ -26,6 +26,9 @@ const useAdminBloc = () => {
     if (location.pathname.includes("/industry")) {
       setTitle("Thống kê ngành nghề");
     }
+    if (location.pathname.includes("/proprietary")) {
+      setTitle("Thống kê tự doanh");
+    }
     if (location.pathname.includes("/dashboard")) {
       setTitle("Dashboard");
       setTitle1("");

@@ -5,6 +5,7 @@ import StatisticLayout from "./statistic.layout";
 import ForeignPage from "./foreign";
 import CapitalizationPage from "./capitalization";
 import IndustryPage from "./industry";
+import ProprietaryPage from "./proprietary";
 
 const route: RouteObject = {
   path: "/statistic",
@@ -22,6 +23,10 @@ const route: RouteObject = {
     {
       path: "/statistic/industry",
       element: <IndustryPage />,
+    },
+    {
+      path: "/statistic/proprietary",
+      element: <ProprietaryPage />,
     },
   ],
 };

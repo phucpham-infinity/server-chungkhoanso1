@@ -135,27 +135,66 @@ export const useChartBloc = () => {
     });
   };
 
+  const handleAddProprietaryData = useMutation(
+    (payload: { version: string; data: any[] }) => {
+      const process = [
+        axios({
+          method: "POST",
+          url: "/table",
+          params: {
+            table: "statistic_proprietary",
+          },
+          data: payload?.data?.map((x) => ({
+            ...x,
+            version: payload?.version,
+          })),
+        }),
+      ];
+      return Promise.all(process);
+    }
+  );
+
+  const handlePublishProprietaryData = (payload: {
+    version: string;
+    data: any[];
+  }) => {
+    handleAddProprietaryData.mutateAsync(payload).then(() => {
+      handleUpdateChartVersion.mutateAsync({
+        name: "statistic_proprietary",
+        version: payload.version,
+      });
+    });
+  };
+
   useEffect(() => {
     if (
       handleAddChartData.isError ||
       handleUpdateChartVersion.isError ||
       handleAddTop10TableData.isError ||
-      handleAddIndustryData.isError
+      handleAddIndustryData.isError ||
+      handleAddProprietaryData.isError
     ) {
       toast({
         title: "Có lỗi xẩy ra.",
         description:
-          String(handleAddChartData.error) ||
-          String(handleUpdateChartVersion.error) ||
-          String(handleAddTop10TableData.error) ||
-          String(handleAddIndustryData.error),
+          JSON.stringify(handleAddChartData.error) ||
+          JSON.stringify(handleUpdateChartVersion.error) ||
+          JSON.stringify(handleAddTop10TableData.error) ||
+          JSON.stringify(handleAddIndustryData.error) ||
+          JSON.stringify(handleAddProprietaryData.error),
         status: "error",
         duration: 3000,
         isClosable: true,
         position: "top-right",
       });
     }
-  }, [handleAddChartData.isError, handleUpdateChartVersion.isError]);
+  }, [
+    handleAddChartData.isError,
+    handleUpdateChartVersion.isError,
+    handleAddProprietaryData.isError,
+    handleAddTop10TableData.isError,
+    handleAddIndustryData.isError,
+  ]);
 
   useEffect(() => {
     if (handleUpdateChartVersion.isSuccess) {
@@ -175,10 +214,13 @@ export const useChartBloc = () => {
     handleAddChartData,
     handlePublishTop10TableData,
     handlePublishIndustryData,
+    handleAddProprietaryData,
+    handlePublishProprietaryData,
     isLoading:
       handleAddChartData.isLoading ||
       handleUpdateChartVersion.isLoading ||
       handleAddTop10TableData.isLoading ||
-      handleAddIndustryData.isLoading,
+      handleAddIndustryData.isLoading ||
+      handleAddProprietaryData.isLoading,
   };
 };

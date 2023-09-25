@@ -92,7 +92,6 @@ const Chart1 = () => {
             leftIcon={<MdRemoveRedEye />}
             colorScheme="blue"
             onClick={() => navigate("/statistic/industry")}
-            isLoading={isLoading}
           >
             Xem
           </CK.Button>

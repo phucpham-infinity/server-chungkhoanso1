@@ -1,26 +1,20 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as CK from "@chakra-ui/react";
 import { BiCloudUpload } from "react-icons/bi";
 import * as XLSX from "xlsx";
 
-import Chart01 from "@/components/charts/foreign-transactions-01";
-import { MdRemoveRedEye, MdSave } from "react-icons/md";
+import { MdSave, MdRemoveRedEye } from "react-icons/md";
 import { useChartBloc } from "@/pages/admin/chart/chart.bloc";
 
-import ForeignTop12 from "@/components/charts/foreign-top-12";
+import ProprietaryPage from "@/components/charts/proprietary";
 import { isEmpty } from "lodash";
-import { useNavigate } from "react-router-dom";
 
 const Chart1 = () => {
-  // const summary =
-  const [summary, setSummary] = useState(null);
-  const [detail, setDetail] = useState(null);
+  const [summary, setSummary] = useState<any[]>(null);
   const [file, setFile] = useState<any>(null);
 
-  const [isUploading, setIsUploading] = useState(false);
-
   const handleReadFile = async (e: any) => {
-    setIsUploading(true);
     const file = e.target.files[0];
     setFile(file);
     const data = await file.arrayBuffer();
@@ -31,88 +25,36 @@ const Chart1 = () => {
       defval: "",
     });
     setSummary(jsonData0);
-    const worksheet1 = workbook.Sheets[workbook.SheetNames[1]];
-    const jsonData1 = XLSX.utils.sheet_to_json(worksheet1, {
-      header: 1,
-      defval: "",
-    });
-    setDetail(jsonData1);
   };
-
-  const [dataVol, setDataVol] = useState(null);
-  const [dataValue, setDataValue] = useState(null);
-  const [top12Data, setTop12Data] = useState(null);
-
-  useEffect(() => {
-    if (detail) {
-      const data = [];
-      detail.forEach((x: any) => {
-        if (x[0]) {
-          data.push({
-            symbol: x[0],
-            vol: x[1],
-            value: x[2],
-            exchange: x[3],
-            order: x[4],
-            type: x[5],
-          });
-        }
-      });
-      setTop12Data(data);
-    }
-  }, [detail]);
 
   const { isOpen, onOpen, onClose } = CK.useDisclosure();
   const cancelRef = useRef();
 
+  const [tableData, setTableData] = useState<any[]>(null);
+
   useEffect(() => {
     if (summary) {
-      setDataVol([
-        {
-          name: "Tổng KL NN Mua",
-          value: summary[0][1],
-          percent: summary[0][1] / (summary[0][1] + summary[1][1]),
-          fill: "#00AA00",
-        },
-        {
-          name: "Tổng KL NN Bán",
-          value: summary[1][1],
-          percent: summary[1][1] / (summary[0][1] + summary[1][1]),
-          fill: "#FF593B",
-        },
-      ]);
-      setDataValue([
-        {
-          name: "Tổng KL NN Mua",
-          value: summary[2][1],
-          percent: summary[2][1] / (summary[2][1] + summary[3][1]),
-          fill: "#00AA00",
-        },
-        {
-          name: "Tổng KL NN Bán",
-          value: summary[3][1],
-          percent: summary[3][1] / (summary[2][1] + summary[3][1]),
-          fill: "#FF593B",
-        },
-      ]);
+      const data = summary.slice(1).map((x) => ({
+        code: x[0],
+        vol: x[1],
+        value: x[2],
+        exchange: x[3],
+        order: x[4],
+        type: x[5],
+        time: x[6],
+      }));
+      setTableData(data);
     }
   }, [summary]);
 
-  const { handlePublishChartData, isLoading } = useChartBloc();
+  const { handlePublishProprietaryData, isLoading } = useChartBloc();
 
   const handlePublish = () => {
-    onClose();
-    const version = new Date().getTime();
-    handlePublishChartData({
-      total: {
-        purchasing_volume: summary[0][1],
-        sale_volume: summary[1][1],
-        purchase_value: summary[2][1],
-        sale_value: summary[3][1],
-      },
-      version: String(version),
-      top: top12Data.slice(1),
+    handlePublishProprietaryData({
+      data: tableData,
+      version: String(new Date().getTime()),
     });
+    onClose();
   };
 
   const navigate = useNavigate();
@@ -140,7 +82,7 @@ const Chart1 = () => {
         </CK.HStack>
         <CK.HStack>
           <CK.Button
-            isDisabled={!dataValue}
+            isDisabled={isEmpty(tableData)}
             leftIcon={<MdSave />}
             colorScheme="green"
             onClick={onOpen}
@@ -151,32 +93,31 @@ const Chart1 = () => {
           <CK.Button
             leftIcon={<MdRemoveRedEye />}
             colorScheme="blue"
-            onClick={() => navigate("/statistic/foreign")}
+            onClick={() => navigate("/statistic/proprietary")}
           >
             Xem
           </CK.Button>
         </CK.HStack>
       </CK.HStack>
-      {dataValue && dataVol && (
-        <Chart01 dataValue={dataValue} dataVol={dataVol} />
-      )}
 
-      {!isEmpty(top12Data) && (
-        <ForeignTop12
-          name="TOP 12 CP NĐT NN MUA NHIỀU NHẤT SÀN"
-          type="buy"
-          data={top12Data.slice(1)}
-          color="#18712C"
-        />
-      )}
-      {!isEmpty(top12Data) && (
-        <ForeignTop12
-          name="TOP 12 CP NĐT NN BÁN NHIỀU NHẤT SÀN"
-          type="sell"
-          data={top12Data.slice(1)}
-          color="#D44B20"
-        />
-      )}
+      <CK.HStack spacing={6} my={6} w={"full"}>
+        {!isEmpty(tableData) && (
+          <ProprietaryPage
+            rowColors={["#E8F6F3", "white"]}
+            headerColor={"#16A085"}
+            type="buy"
+            data={tableData}
+          />
+        )}
+        {!isEmpty(tableData) && (
+          <ProprietaryPage
+            rowColors={["#ECECF9", "white"]}
+            headerColor={"#3C40C6"}
+            type="buy"
+            data={tableData}
+          />
+        )}
+      </CK.HStack>
 
       <CK.AlertDialog
         isOpen={isOpen}

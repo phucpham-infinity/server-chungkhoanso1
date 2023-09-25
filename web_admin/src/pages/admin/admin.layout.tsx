@@ -65,6 +65,19 @@ const AdminPage = () => {
               />
             ),
           },
+          {
+            name: "Thống kê tự doanh",
+            path: "/chart/proprietary",
+            layout: "/admin",
+            icon: (
+              <CK.Icon
+                as={BiBarChartAlt2}
+                width="24px"
+                height="24px"
+                color="inherit"
+              />
+            ),
+          },
         ]}
         display="none"
       />
