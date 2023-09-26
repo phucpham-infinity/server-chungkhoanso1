@@ -166,13 +166,45 @@ export const useChartBloc = () => {
     });
   };
 
+  const handleAddInstitutionIndividualData = useMutation(
+    (payload: { version: string; data: any[] }) => {
+      const process = [
+        axios({
+          method: "POST",
+          url: "/table",
+          params: {
+            table: "statistic_institution_individual",
+          },
+          data: payload?.data?.map((x) => ({
+            ...x,
+            version: payload?.version,
+          })),
+        }),
+      ];
+      return Promise.all(process);
+    }
+  );
+
+  const handlePublishInstitutionIndividualData = (payload: {
+    version: string;
+    data: any[];
+  }) => {
+    handleAddInstitutionIndividualData.mutateAsync(payload).then(() => {
+      handleUpdateChartVersion.mutateAsync({
+        name: "statistic_institution_individual",
+        version: payload.version,
+      });
+    });
+  };
+
   useEffect(() => {
     if (
       handleAddChartData.isError ||
       handleUpdateChartVersion.isError ||
       handleAddTop10TableData.isError ||
       handleAddIndustryData.isError ||
-      handleAddProprietaryData.isError
+      handleAddProprietaryData.isError ||
+      handleAddInstitutionIndividualData.isError
     ) {
       toast({
         title: "Có lỗi xẩy ra.",
@@ -181,7 +213,8 @@ export const useChartBloc = () => {
           JSON.stringify(handleUpdateChartVersion.error) ||
           JSON.stringify(handleAddTop10TableData.error) ||
           JSON.stringify(handleAddIndustryData.error) ||
-          JSON.stringify(handleAddProprietaryData.error),
+          JSON.stringify(handleAddProprietaryData.error) ||
+          JSON.stringify(handleAddInstitutionIndividualData.error),
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -194,6 +227,7 @@ export const useChartBloc = () => {
     handleAddProprietaryData.isError,
     handleAddTop10TableData.isError,
     handleAddIndustryData.isError,
+    handleAddInstitutionIndividualData.isError,
   ]);
 
   useEffect(() => {
@@ -216,6 +250,7 @@ export const useChartBloc = () => {
     handlePublishIndustryData,
     handleAddProprietaryData,
     handlePublishProprietaryData,
+    handlePublishInstitutionIndividualData,
     isLoading:
       handleAddChartData.isLoading ||
       handleUpdateChartVersion.isLoading ||

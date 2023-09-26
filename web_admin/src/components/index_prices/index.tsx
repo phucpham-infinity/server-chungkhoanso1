@@ -8,12 +8,19 @@ const IndexPrices = () => {
   const { data, isLoading } = useBloc();
   return isLoading ? (
     <CK.Center minH={"100px"} w={"full"}>
-      <CK.Spinner />
+      <CK.Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl"
+      />
     </CK.Center>
   ) : (
     <CK.HStack w={"full"} justifyContent={"space-between"}>
-      {data.map((x: any) => (
+      {data.map((x: any, index: number) => (
         <CK.HStack
+          key={index * 99}
           alignItems={"flex-start"}
           justifyContent={"stretch"}
           bgColor={"white"}

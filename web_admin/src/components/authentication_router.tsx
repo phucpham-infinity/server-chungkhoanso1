@@ -21,6 +21,9 @@ const AuthenticationRouter = (props: IAuthenticationRouter) => {
 
   const { isSuccess, data, error } = useQuery({
     queryKey: ["me"],
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
     queryFn: () => {
       return axios({
         url: "/users/me",

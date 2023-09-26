@@ -6,6 +6,7 @@ import ForeignPage from "./foreign";
 import CapitalizationPage from "./capitalization";
 import IndustryPage from "./industry";
 import ProprietaryPage from "./proprietary";
+import InstitutionIndividualPage from "./institution-individual";
 
 const route: RouteObject = {
   path: "/statistic",
@@ -27,6 +28,10 @@ const route: RouteObject = {
     {
       path: "/statistic/proprietary",
       element: <ProprietaryPage />,
+    },
+    {
+      path: "/statistic/institution-individual",
+      element: <InstitutionIndividualPage />,
     },
   ],
 };

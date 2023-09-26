@@ -11,7 +11,19 @@ import IndustryChart from "@/components/charts/industry";
 const Component = () => {
   const { isLoading, data, versionData } = useBloc();
 
-  return (
+  return isLoading ? (
+    <CK.Center minH={"100px"} w={"full"}>
+      <CK.Center minH={"100px"} w={"full"}>
+        <CK.Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+      </CK.Center>
+    </CK.Center>
+  ) : (
     <CK.HStack
       position={"relative"}
       spacing={6}

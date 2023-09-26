@@ -27,7 +27,7 @@ const AdminPage = () => {
             ),
           },
           {
-            name: "Thống kê giao dịch",
+            name: "Giao dịch",
             path: "/chart/chart_1",
             layout: "/admin",
             icon: (
@@ -53,7 +53,7 @@ const AdminPage = () => {
             ),
           },
           {
-            name: "Thống kê ngành nghề",
+            name: "Ngành nghề",
             path: "/chart/industry",
             layout: "/admin",
             icon: (
@@ -66,8 +66,21 @@ const AdminPage = () => {
             ),
           },
           {
-            name: "Thống kê tự doanh",
+            name: "Tự doanh",
             path: "/chart/proprietary",
+            layout: "/admin",
+            icon: (
+              <CK.Icon
+                as={BiBarChartAlt2}
+                width="24px"
+                height="24px"
+                color="inherit"
+              />
+            ),
+          },
+          {
+            name: "Tổ chức / cá nhân",
+            path: "/chart/institution-individual",
             layout: "/admin",
             icon: (
               <CK.Icon

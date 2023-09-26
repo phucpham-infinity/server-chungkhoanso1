@@ -3,7 +3,7 @@ const ErrorPage = () => {
   return (
     <CK.Center w="100vw" h="100vh">
       <CK.Text fontStyle={"2xl"} fontWeight={"bold"}>
-        Oops!
+        Oops! Bạn không có quyền truy cập
       </CK.Text>
     </CK.Center>
   );

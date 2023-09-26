@@ -59,7 +59,7 @@ const Capitalization = (props: ICapitalization) => {
         bodyTdSx={(cell) => {
           return {
             textAlign: cell?.column?.id === "code" ? "left" : "center",
-            fontWeight: 700,
+            fontWeight: 500,
           };
         }}
       />

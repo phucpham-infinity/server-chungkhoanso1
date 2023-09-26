@@ -16,3 +16,19 @@ export function convertToSnakeCase(text: String) {
 
   return text.toLowerCase();
 }
+export const getQueryParams = (url: string) => {
+  const queryParams = {};
+  const urlParts = url.split("?");
+
+  if (urlParts.length > 1) {
+    const queryString = urlParts[1];
+    const paramPairs = queryString.split("&");
+
+    paramPairs.forEach((pair) => {
+      const [key, value] = pair.split("=");
+      queryParams[key] = decodeURIComponent(value);
+    });
+  }
+
+  return queryParams;
+};

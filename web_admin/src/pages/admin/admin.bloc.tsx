@@ -29,6 +29,9 @@ const useAdminBloc = () => {
     if (location.pathname.includes("/proprietary")) {
       setTitle("Thống kê tự doanh");
     }
+    if (location.pathname.includes("/institution-individual")) {
+      setTitle("Thống kê tổ chức / cá nhân");
+    }
     if (location.pathname.includes("/dashboard")) {
       setTitle("Dashboard");
       setTitle1("");

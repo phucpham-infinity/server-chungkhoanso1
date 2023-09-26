@@ -7,6 +7,7 @@ import Chart1Page from "./chart/foreign-transactions";
 import CapitalizationPage from "./chart/capitalization";
 import IndustryPage from "./chart/industry";
 import ProprietaryPage from "./chart/proprietary";
+import InstitutionIndividualPage from "./chart/institution-individual";
 
 const route: RouteObject = {
   path: "/admin",
@@ -43,6 +44,10 @@ const route: RouteObject = {
         {
           path: "/admin/chart/proprietary",
           element: <ProprietaryPage />,
+        },
+        {
+          path: "/admin/chart/institution-individual",
+          element: <InstitutionIndividualPage />,
         },
       ],
     },
