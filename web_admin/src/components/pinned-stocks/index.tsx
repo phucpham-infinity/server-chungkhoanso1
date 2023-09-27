@@ -7,7 +7,7 @@ import ICDown from "@/assets/images/ic-down.svg";
 import ICUp from "@/assets/images/ic-up.svg";
 
 const PinnedStocks = () => {
-  const { dataStocks, isLoading, dataPinnedStocks } = useBloc();
+  const { isLoading, dataPinnedStocks } = useBloc();
 
   return isLoading ? (
     <CK.Center minH={"50px"} w={"full"}>
@@ -15,8 +15,9 @@ const PinnedStocks = () => {
     </CK.Center>
   ) : (
     <CK.HStack w={"full"} justifyContent={"space-between"}>
-      {dataPinnedStocks?.data.map((x: any) => (
+      {dataPinnedStocks?.data.map((x: any, index: number) => (
         <CK.VStack
+          key={index * 66}
           borderRadius={6}
           py={"16px"}
           px={"20px"}

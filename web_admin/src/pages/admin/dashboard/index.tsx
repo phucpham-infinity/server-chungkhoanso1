@@ -81,7 +81,7 @@ const Dashboard = () => {
           placeholder="Thêm mã cổ phiếu nổi bật"
           onChange={(e: any) => setSelectedCode(e)}
           styles={{
-            control: (baseStyles, state) => ({
+            control: (baseStyles) => ({
               ...baseStyles,
               width: "400px",
             }),

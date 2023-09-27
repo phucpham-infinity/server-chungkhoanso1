@@ -37,7 +37,8 @@ const Layout = () => {
             Ngày {format(new Date(), "dd/MM/yyyy")}
           </CK.Text>
           <CK.Text fontSize={"16px"} fontWeight={400}>
-            Dữ liệu cập nhật lúc: {format(new Date(), "HH:mm dd/MM/yyyy")}
+            Dữ liệu cập nhật lúc: {format(new Date(), "HH:mm dd/MM/yyyy")}{" "}
+            (Nguồn: vndirect)
           </CK.Text>
         </CK.HStack>
       </CK.VStack>
