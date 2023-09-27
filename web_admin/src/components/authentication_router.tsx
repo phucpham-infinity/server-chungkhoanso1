@@ -5,7 +5,8 @@ import * as CK from "@chakra-ui/react";
 import { axios } from "@/server";
 import { LOCAL_VARIABLE } from "@/constant";
 import { useQuery } from "@tanstack/react-query";
-import { isEmpty, isError } from "lodash";
+import { isEmpty } from "lodash";
+import Logo from "@/assets/images/logo.svg";
 
 interface IAuthenticationRouter {
   children: React.ReactElement;
@@ -19,7 +20,7 @@ const AuthenticationRouter = (props: IAuthenticationRouter) => {
 
   const { setUser, setToken, setError } = useAppStore();
 
-  const { isSuccess, data, error } = useQuery({
+  const { isSuccess, data, error, isError } = useQuery({
     queryKey: ["me"],
     refetchOnMount: false,
     refetchOnReconnect: false,
@@ -55,7 +56,14 @@ const AuthenticationRouter = (props: IAuthenticationRouter) => {
   }, [isError]);
 
   if (isLoading) {
-    return <CK.Text>Loading...</CK.Text>;
+    return (
+      <CK.Center h={"100vh"} w={"100vw"}>
+        <CK.VStack>
+          <CK.Image w={"100px"} src={Logo} />
+          <CK.Spinner />
+        </CK.VStack>
+      </CK.Center>
+    );
   } else {
     if (isUnAuthorized) {
       return !isAuthenticated ? children : <Navigate to={replaceTo} replace />;

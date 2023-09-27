@@ -1,4 +1,6 @@
 import React from "react";
+import Logo from "@/assets/images/logo.svg";
+import HomeBg from "@/assets/images/home-bg.avif";
 
 import {
   Button,
@@ -25,10 +27,7 @@ export default function LoginPage() {
     <Stack w={"100vw"} minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
-          <Image
-            w={"100px"}
-            src="http://storage.chungkhoanso1.vn/app/images/logo_bg_white.png"
-          />
+          <Image w={"100px"} src={Logo} />
           <Heading fontSize={"2xl"}>Sign in to your account</Heading>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
@@ -69,11 +68,7 @@ export default function LoginPage() {
         </Stack>
       </Flex>
       <Flex flex={1}>
-        <Image
-          alt={"Login Image"}
-          objectFit={"cover"}
-          src={"http://storage.chungkhoanso1.vn/app/images/login-bg.avif"}
-        />
+        <Image alt={"Login Image"} objectFit={"cover"} src={HomeBg} />
       </Flex>
     </Stack>
   );
