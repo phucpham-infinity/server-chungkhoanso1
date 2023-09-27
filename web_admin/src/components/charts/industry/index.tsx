@@ -73,7 +73,7 @@ const Industry = (props: IIndustry) => {
               cx="50%"
               cy="50%"
               outerRadius={180}
-              innerRadius={100}
+              innerRadius={50}
               fill="#8884d8"
               labelLine={false}
               label={renderCustomizedLabel}
