@@ -34,12 +34,14 @@ const Chart1 = () => {
 
   useEffect(() => {
     if (xlsxData) {
-      const jsonData = xlsxData.map((x: any) => ({
-        code: x[0],
-        percent: x[1],
-        point: x[2],
-        type: x[3],
-      }));
+      const jsonData = xlsxData
+        .filter((y) => y[0])
+        .map((x: any) => ({
+          code: x[0],
+          percent: x[1],
+          point: x[2],
+          type: x[3],
+        }));
       setTableData(jsonData);
     }
   }, [xlsxData]);

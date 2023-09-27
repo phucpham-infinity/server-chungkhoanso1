@@ -34,15 +34,18 @@ const Chart1 = () => {
 
   useEffect(() => {
     if (summary) {
-      const data = summary.slice(1).map((x) => ({
-        code: x[0],
-        vol: x[1],
-        value: x[2],
-        exchange: x[3],
-        order: x[4],
-        type: x[5],
-        time: x[6],
-      }));
+      const data = summary
+        .slice(1)
+        .filter((y) => y[0])
+        .map((x) => ({
+          code: x[0],
+          vol: x[1],
+          value: x[2],
+          exchange: x[3],
+          order: x[4],
+          type: x[5],
+          time: x[6],
+        }));
       setTableData(data);
     }
   }, [summary]);

@@ -35,12 +35,14 @@ const Chart1 = () => {
   useEffect(() => {
     if (summary) {
       setChartData(
-        summary.map((x: any) => ({
-          code: convertToSnakeCase(x[0]),
-          label: x[0],
-          value: x[1],
-          color: x[2],
-        }))
+        summary
+          .filter((y) => y[0])
+          .map((x: any) => ({
+            code: convertToSnakeCase(x[0]),
+            label: x[0],
+            value: x[1],
+            color: x[2],
+          }))
       );
     }
   }, [summary]);

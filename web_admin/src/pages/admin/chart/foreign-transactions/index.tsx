@@ -46,18 +46,20 @@ const Chart1 = () => {
   useEffect(() => {
     if (detail) {
       const data = [];
-      detail.forEach((x: any) => {
-        if (x[0]) {
-          data.push({
-            symbol: x[0],
-            vol: x[1],
-            value: x[2],
-            exchange: x[3],
-            order: x[4],
-            type: x[5],
-          });
-        }
-      });
+      detail
+        .filter((y) => y[0])
+        .forEach((x: any) => {
+          if (x[0]) {
+            data.push({
+              symbol: x[0],
+              vol: x[1],
+              value: x[2],
+              exchange: x[3],
+              order: x[4],
+              type: x[5],
+            });
+          }
+        });
       setTop12Data(data);
     }
   }, [detail]);

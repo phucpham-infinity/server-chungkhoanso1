@@ -35,13 +35,16 @@ const Chart1 = () => {
   useEffect(() => {
     if (summary) {
       setSheetData(
-        summary.slice(1)?.map((x: any) => ({
-          key: convertToSnakeCase(x[0]),
-          label: x[0],
-          value: x[1],
-          time: x[2],
-          type: x[3],
-        }))
+        summary
+          .slice(1)
+          .filter((y) => y[0])
+          .map((x: any) => ({
+            key: convertToSnakeCase(x[0]),
+            label: x[0],
+            value: x[1],
+            time: x[2],
+            type: x[3],
+          }))
       );
     }
   }, [summary]);
