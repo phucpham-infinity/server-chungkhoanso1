@@ -91,8 +91,8 @@ const Component = () => {
           )}
           {!isEmpty(data) && (
             <InstitutionIndividualChart
-              chart1Colors={["#00AA00", "#FF593B"]}
-              chart2Colors={["#00A0AA", "#FF7F37"]}
+              chart1Colors={["#1AEE95", "#FF9979"]}
+              chart2Colors={["#0011AA", "#FFDF37"]}
               data={data?.filter((x: any) => x.type === "foreign_individual")}
             />
           )}
@@ -131,8 +131,8 @@ const Component = () => {
           )}
           {!isEmpty(data) && (
             <InstitutionIndividualChart
-              chart1Colors={["#00AA00", "#FF593B"]}
-              chart2Colors={["#00A0AA", "#FF7F37"]}
+              chart1Colors={["#3A8476", "#FFB13B"]}
+              chart2Colors={["#A2F6FC", "#42A1FA"]}
               data={data?.filter((x: any) => x.type === "domestic_institution")}
             />
           )}
@@ -169,8 +169,8 @@ const Component = () => {
           )}
           {!isEmpty(data) && (
             <InstitutionIndividualChart
-              chart1Colors={["#00AA00", "#FF593B"]}
-              chart2Colors={["#00A0AA", "#FF7F37"]}
+              chart1Colors={["#74AA00", "#FF823B"]}
+              chart2Colors={["#9200AA", "#B6ACA6"]}
               data={data?.filter((x: any) => x.type === "foreign_institution")}
             />
           )}

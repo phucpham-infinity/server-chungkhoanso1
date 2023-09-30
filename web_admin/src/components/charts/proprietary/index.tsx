@@ -43,7 +43,7 @@ const Capitalization = (props: ICapitalization) => {
   return (
     <CK.VStack w={"full"}>
       <CK.HStack w={"100%"} justifyContent={"flex-end"}>
-        <CK.Select
+        {/* <CK.Select
           w={"160px"}
           variant={"filled"}
           onChange={(data) => {
@@ -52,7 +52,7 @@ const Capitalization = (props: ICapitalization) => {
         >
           <option value="HOSE">SÀN HOSE</option>
           <option value="HNX">SÀN HNX</option>
-        </CK.Select>
+        </CK.Select> */}
         <CK.Select
           w={"160px"}
           variant={"filled"}
@@ -65,6 +65,7 @@ const Capitalization = (props: ICapitalization) => {
           <option value="1M">1 Tháng</option>
           <option value="3M">3 Tháng</option>
           <option value="6M">6 Tháng</option>
+          <option value="12M">1 Năm</option>
         </CK.Select>
       </CK.HStack>
       <DataTable

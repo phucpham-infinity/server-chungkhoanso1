@@ -117,6 +117,8 @@ const Chart1 = () => {
         </CK.Text>
         {!isEmpty(sheetData) && (
           <InstitutionIndividualChart
+            chart1Colors={["#1AEE95", "#FF9979"]}
+            chart2Colors={["#0011AA", "#FFDF37"]}
             data={sheetData?.filter((x) => x.type === "foreign_individual")}
           />
         )}
@@ -136,6 +138,8 @@ const Chart1 = () => {
       </CK.Text>
       {!isEmpty(sheetData) && (
         <InstitutionIndividualChart
+          chart1Colors={["#3A8476", "#FFB13B"]}
+          chart2Colors={["#A2F6FC", "#42A1FA"]}
           data={sheetData?.filter((x) => x.type === "foreign_institution")}
         />
       )}
