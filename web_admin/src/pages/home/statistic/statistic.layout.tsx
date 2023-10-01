@@ -1,3 +1,4 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
 import * as CK from "@chakra-ui/react";
 import { format } from "date-fns";
@@ -5,8 +6,27 @@ import Bg01 from "@/assets/images/bg-01.svg";
 import IndexPrices from "@/components/index_prices";
 
 const Layout = () => {
+  const statisticEL = React.useRef<any>({});
+  const iframeHeightNotify = () => {
+    window.parent.postMessage(
+      { height: statisticEL.current.scrollHeight },
+      "*"
+    );
+  };
+  React.useEffect(() => {
+    let timer = setInterval(iframeHeightNotify, 300);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
-    <CK.VStack p={4} alignItems={"flex-start"}>
+    <CK.VStack
+      ref={statisticEL}
+      bgColor={"white"}
+      p={4}
+      alignItems={"flex-start"}
+    >
       <CK.VStack
         w={"full"}
         borderRadius={12}
