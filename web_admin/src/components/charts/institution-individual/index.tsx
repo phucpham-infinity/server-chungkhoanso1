@@ -205,7 +205,7 @@ const Capitalization = (props: ICapitalization) => {
             <CK.HStack w={"full"}>
               <CK.Square
                 size={"38px"}
-                bgColor={chart1Colors[0]}
+                bgColor={chart2Colors[0]}
                 borderRadius={"4px"}
               ></CK.Square>
 
@@ -223,7 +223,7 @@ const Capitalization = (props: ICapitalization) => {
             <CK.HStack w={"full"}>
               <CK.Square
                 size={"38px"}
-                bgColor={chart1Colors[1]}
+                bgColor={chart2Colors[1]}
                 borderRadius={"4px"}
               ></CK.Square>
               <CK.VStack w={"full"} spacing={0} alignItems={"flex-start"}>
