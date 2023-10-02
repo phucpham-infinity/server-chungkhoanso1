@@ -25,6 +25,7 @@ export const useBloc = () => {
         },
         params: {
           table: "stocks",
+          limit: 6,
           filter: {
             pinned: [1],
           },

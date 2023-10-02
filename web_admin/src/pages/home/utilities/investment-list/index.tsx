@@ -256,7 +256,7 @@ const InvestmentList = () => {
   );
 
   return (
-    <CK.VStack p={4} spacing={0} alignItems={"flex-start"}>
+    <CK.VStack bgColor={"white"} spacing={0} alignItems={"flex-start"}>
       <CK.VStack
         w={"full"}
         px={6}
