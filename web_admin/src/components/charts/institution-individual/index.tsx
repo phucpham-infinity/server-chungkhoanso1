@@ -65,7 +65,8 @@ const Capitalization = (props: ICapitalization) => {
           <option value="1W">1 Tuần</option>
           <option value="1M">1 Tháng</option>
           <option value="3M">3 Tháng</option>
-          <option value="12M">12 Tháng</option>
+          <option value="6M">6 Tháng</option>
+          <option value="12M">1 Năm</option>
         </CK.Select>
       </CK.HStack>
       <CK.VStack w={"full"}>

@@ -172,7 +172,7 @@ const Chart01 = (props: IChart01) => {
           <CK.HStack>
             <CK.Square
               size={"38px"}
-              bgColor={"#00A0AA"}
+              bgColor={"#00AA00"}
               borderRadius={"4px"}
             ></CK.Square>
 
@@ -190,7 +190,7 @@ const Chart01 = (props: IChart01) => {
           <CK.HStack>
             <CK.Square
               size={"38px"}
-              bgColor={"#FF7F37"}
+              bgColor={"#FF593B"}
               borderRadius={"4px"}
             ></CK.Square>
             <CK.VStack spacing={0} alignItems={"flex-start"}>

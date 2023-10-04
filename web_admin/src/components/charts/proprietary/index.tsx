@@ -37,22 +37,11 @@ const Capitalization = (props: ICapitalization) => {
       id: "value",
     }),
   ];
-  const [exchange, setExchange] = useState("HOSE");
   const [time, setTime] = useState("1D");
 
   return (
     <CK.VStack w={"full"}>
       <CK.HStack w={"100%"} justifyContent={"flex-end"}>
-        {/* <CK.Select
-          w={"160px"}
-          variant={"filled"}
-          onChange={(data) => {
-            setExchange(data.target.value);
-          }}
-        >
-          <option value="HOSE">SÀN HOSE</option>
-          <option value="HNX">SÀN HNX</option>
-        </CK.Select> */}
         <CK.Select
           w={"160px"}
           variant={"filled"}
@@ -82,7 +71,6 @@ const Capitalization = (props: ICapitalization) => {
         }}
         columns={columns}
         data={data
-          ?.filter((x: any) => x.exchange === exchange)
           ?.filter((y: any) => y.time === time)
           ?.filter((z: any) => z.type === type)}
         bodyTrSx={(row) => {
