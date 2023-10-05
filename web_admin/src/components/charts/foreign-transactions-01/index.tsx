@@ -87,7 +87,7 @@ const Chart01 = (props: IChart01) => {
             </PieChart>
           </ResponsiveContainer>
         </CK.Box>
-        <CK.VStack pl={"86px"}>
+        <CK.VStack alignItems={"flex-start"} pl={"86px"}>
           <CK.HStack>
             <CK.Square
               size={"38px"}
@@ -168,7 +168,7 @@ const Chart01 = (props: IChart01) => {
             </PieChart>
           </ResponsiveContainer>
         </CK.Box>
-        <CK.VStack pl={"86px"}>
+        <CK.VStack alignItems={"flex-start"} pl={"86px"}>
           <CK.HStack>
             <CK.Square
               size={"38px"}
@@ -182,7 +182,7 @@ const Chart01 = (props: IChart01) => {
               </CK.Text>
               {dataValue[0]?.value && (
                 <CK.Text fontSize={"14px"}>
-                  {numeral(dataVol[0]?.value).format("0,0")} Tỷ
+                  {numeral(dataValue[0]?.value).format("0,0")} Tỷ
                 </CK.Text>
               )}
             </CK.VStack>
@@ -199,7 +199,7 @@ const Chart01 = (props: IChart01) => {
               </CK.Text>
               {dataValue[1]?.value && (
                 <CK.Text fontSize={"14px"}>
-                  {numeral(dataVol[1]?.value).format("0,0")} Tỷ
+                  {numeral(dataValue[1]?.value).format("0,0")} Tỷ
                 </CK.Text>
               )}
             </CK.VStack>
