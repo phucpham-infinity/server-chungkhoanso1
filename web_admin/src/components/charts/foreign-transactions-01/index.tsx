@@ -91,7 +91,7 @@ const Chart01 = (props: IChart01) => {
           <CK.HStack>
             <CK.Square
               size={"38px"}
-              bgColor={"#00AA00"}
+              bgColor={dataVol[0]?.fill}
               borderRadius={"4px"}
             ></CK.Square>
             <CK.VStack spacing={0} alignItems={"flex-start"}>
@@ -108,7 +108,7 @@ const Chart01 = (props: IChart01) => {
           <CK.HStack>
             <CK.Square
               size={"38px"}
-              bgColor={"#FF593B"}
+              bgColor={dataVol[1]?.fill}
               borderRadius={"4px"}
             ></CK.Square>
             <CK.VStack spacing={0} alignItems={"flex-start"}>
@@ -137,14 +137,14 @@ const Chart01 = (props: IChart01) => {
             <CK.Text fontWeight={"bold"} fontSize={"36px"}>
               {dataValue[1]?.value && dataValue[0]?.value && (
                 <CK.Text lineHeight={"36px"}>
-                  {numeral(
-                    (dataValue[0]?.value + dataValue[1]?.value) / 1000000
-                  ).format("0,0.0")}
+                  {numeral(dataValue[0]?.value + dataValue[1]?.value).format(
+                    "0,0"
+                  )}
                 </CK.Text>
               )}
             </CK.Text>
             <CK.Text fontWeight={"bold"} fontSize={"12px"}>
-              triệu tỷ đồng
+              tỷ đồng
             </CK.Text>
           </CK.Box>
           <ResponsiveContainer width="100%" height="100%">
@@ -172,7 +172,7 @@ const Chart01 = (props: IChart01) => {
           <CK.HStack>
             <CK.Square
               size={"38px"}
-              bgColor={"#00AA00"}
+              bgColor={dataValue[0].fill}
               borderRadius={"4px"}
             ></CK.Square>
 
@@ -190,7 +190,7 @@ const Chart01 = (props: IChart01) => {
           <CK.HStack>
             <CK.Square
               size={"38px"}
-              bgColor={"#FF593B"}
+              bgColor={dataValue[1].fill}
               borderRadius={"4px"}
             ></CK.Square>
             <CK.VStack spacing={0} alignItems={"flex-start"}>

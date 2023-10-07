@@ -20,10 +20,10 @@ interface IForeignTop12 {
   color?: string;
 }
 
-const CustomizedTick = ({ x, y, payload, offsetX }: any) => {
+const CustomizedTick = ({ x, y, payload, offsetX, ratio = 1 }: any) => {
   return (
-    <text fontWeight={600} y={y} x={x + offsetX}>
-      {Number(payload.value) / 100000}
+    <text fontSize={"14px"} fontWeight={600} y={y} x={x + offsetX}>
+      {Number(payload.value) / ratio}
     </text>
   );
 };
@@ -38,8 +38,8 @@ const CustomizedLabel = ({ x, y, label, viewBox }: any) => {
 const CustomizedLabelList = (props: any) => {
   const { x, y, value } = props;
   return (
-    <text fontWeight={600} y={y - 10} x={x + 4}>
-      {numeral(Number(value) / 100000).format("0,0.0")}
+    <text fontSize={"12px"} fontWeight={600} y={y - 14} x={x}>
+      {numeral(Number(value)).format("0,0")}
     </text>
   );
 };
@@ -63,7 +63,7 @@ const CustomizedDot = (props) => {
         fontWeight={600}
         fill="#E4AA0A"
       >
-        {numeral(Number(value) / 100000).format("0,0.0")}
+        {numeral(Number(value)).format("0,0")}
       </text>
     </svg>
   );
@@ -108,7 +108,7 @@ const ForeignTop12 = (props: IForeignTop12) => {
               label={<CustomizedLabel label="(KL) triệu CP" />}
               type="number"
               yAxisId="1"
-              tick={<CustomizedTick offsetX={-30} />}
+              tick={<CustomizedTick ratio={10000} offsetX={-30} />}
             />
             <YAxis
               label={<CustomizedLabel label="GT (tỷ)" />}

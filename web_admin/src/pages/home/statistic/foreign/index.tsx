@@ -123,11 +123,11 @@ const Foreign = () => {
               dataVol={[
                 {
                   value: dataTotalVolValueForeign?.purchasing_volume,
-                  fill: "#00AA00",
+                  fill: "#74AA00",
                 },
                 {
                   value: dataTotalVolValueForeign?.sale_volume,
-                  fill: "#FF593B",
+                  fill: "#FF823B",
                 },
               ]}
             />
