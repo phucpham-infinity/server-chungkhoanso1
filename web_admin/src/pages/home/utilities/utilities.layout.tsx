@@ -10,12 +10,12 @@ const Layout = () => {
       "*"
     );
   };
-  React.useEffect(() => {
-    let timer = setInterval(iframeHeightNotify, 1000);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  // React.useEffect(() => {
+  //   let timer = setInterval(iframeHeightNotify, 1000);
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, []);
 
   return (
     <Box ref={statisticEL}>
