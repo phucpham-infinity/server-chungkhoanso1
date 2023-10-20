@@ -176,7 +176,7 @@ const InvestmentList = () => {
 
         return (
           <CK.Text color={String(total).includes("-") ? "red" : "green"}>
-            {numeral(total).format("0,0.0")}
+            {numeral(total * 1000).format("0,0")}
           </CK.Text>
         );
       },
@@ -187,13 +187,14 @@ const InvestmentList = () => {
       cell: (info) => {
         const { purchase_price, code } = info?.row?.original;
         const current_price = dataPinnedStocks?.[code]?.price;
-        const percent = (current_price - purchase_price) / purchase_price;
+        const percent =
+          ((current_price - purchase_price) / purchase_price) * 100;
         return (
           <CK.Text
             w={"70px"}
             color={String(percent).includes("-") ? "red" : "green"}
           >
-            {numeral(percent).format("0.00")}%
+            {numeral(percent).format("0.0")}
           </CK.Text>
         );
       },
@@ -237,7 +238,7 @@ const InvestmentList = () => {
             color: "black",
             bgColor: "transparent",
             fontWeight: 700,
-            fontSize: "15px",
+            fontSize: "13px",
             textTransform: "uppercase",
             textAlign: row?.id === "code" ? "left" : "center",
           };
@@ -248,6 +249,7 @@ const InvestmentList = () => {
           return {
             fontWeight: 700,
             textAlign: cell?.column?.id === "code" ? "left" : "center",
+            fontSize: "13px",
           };
         }}
       />
