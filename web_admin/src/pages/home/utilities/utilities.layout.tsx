@@ -11,7 +11,7 @@ const Layout = () => {
     );
   };
   React.useEffect(() => {
-    let timer = setInterval(iframeHeightNotify, 2000);
+    let timer = setInterval(iframeHeightNotify, 500);
     return () => {
       clearInterval(timer);
     };
