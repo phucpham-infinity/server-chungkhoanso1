@@ -24,7 +24,7 @@ const Layout = () => {
     <CK.VStack
       ref={statisticEL}
       bgColor={"white"}
-      p={4}
+      p={0}
       alignItems={"flex-start"}
     >
       <CK.VStack
