@@ -7,7 +7,7 @@ import HLine from "@/assets/images/h-line.svg";
 const IndexPrices = () => {
   const { data, isLoading } = useBloc();
   return isLoading ? (
-    <CK.Center minH={"100px"} w={"full"}>
+    <CK.Center minH={"10s0px"} w={"full"}>
       <CK.Spinner
         thickness="4px"
         speed="0.65s"
@@ -30,15 +30,15 @@ const IndexPrices = () => {
         >
           <CK.Box
             w={2}
-            h={"105px"}
+            h={"70px"}
             bg={`radial-gradient(272.66% 237.35% at 52.34% -70.02%, #FFE4A6 0%, #FDCA6D 18%, #F8C66A 25.52%, #996D2B 75%, #744A13 100%)`}
           ></CK.Box>
-          <CK.VStack py={3} px={4} alignItems={"flex-start"}>
-            <CK.Text fontSize={"24px"} fontWeight={700}>
+          <CK.VStack spacing={0} py={1} px={4} alignItems={"flex-start"}>
+            <CK.Text fontSize={"20px"} fontWeight={700}>
               {x.code}
             </CK.Text>
             <CK.HStack spacing={2}>
-              <CK.Text fontSize={"24px"} fontWeight={700}>
+              <CK.Text fontSize={"20px"} fontWeight={700}>
                 {numeral(x.price).format("0,0.00")}
               </CK.Text>
               <CK.Text

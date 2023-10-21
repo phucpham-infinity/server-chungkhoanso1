@@ -30,8 +30,8 @@ const Layout = () => {
       <CK.VStack
         w={"full"}
         borderRadius={12}
-        px={6}
-        py={9}
+        px={4}
+        py={3}
         bgColor={"black"}
         alignItems={"flex-start"}
         color={"white"}
@@ -40,14 +40,14 @@ const Layout = () => {
         overflow={"hidden"}
       >
         <CK.Image position={"absolute"} right={0} top={0} src={Bg01} />
-        <CK.Text fontSize={"24px"} fontWeight={700}>
+        <CK.Text fontSize={"20px"} lineHeight={"20px"} fontWeight={700}>
           TỔNG QUAN
         </CK.Text>
         <CK.Text
           fontFamily={"Genos"}
-          fontSize={"48px"}
+          fontSize={"40px"}
           color={"#F8C66A"}
-          lineHeight={"50px"}
+          lineHeight={"40px"}
           fontWeight={700}
         >
           THỊ TRƯỜNG CHỨNG KHOÁN
@@ -62,7 +62,7 @@ const Layout = () => {
           </CK.Text>
         </CK.HStack>
       </CK.VStack>
-      <CK.Box mt={5} w={"full"}>
+      <CK.Box w={"full"}>
         <IndexPrices />
       </CK.Box>
       <Outlet />
