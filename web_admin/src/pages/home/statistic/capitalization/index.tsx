@@ -27,10 +27,10 @@ const Component = () => {
             </CK.Text>
             {versionTop10Data?.version && (
               <CK.Text fontWeight={500} fontSize={"16px"}>
-                Dữ liệu InvestOne cập nhật lúc ngày{" "}
+                Dữ liệu InvestOne cập nhật lúc{" "}
                 {format(
                   new Date(+versionTop10Data?.version),
-                  "HH:mm dd/MM/yyyy"
+                  "HH:mm 'ngày' dd/MM/yyyy"
                 )}
               </CK.Text>
             )}
@@ -62,10 +62,10 @@ const Component = () => {
             </CK.Text>
             {versionTop10Data?.version && (
               <CK.Text fontWeight={500} fontSize={"16px"}>
-                Dữ liệu InvestOne cập nhật lúc ngày{" "}
+                Dữ liệu InvestOne cập nhật lúc{" "}
                 {format(
                   new Date(+versionTop10Data?.version),
-                  "HH:mm dd/MM/yyyy"
+                  "HH:mm 'ngày' dd/MM/yyyy"
                 )}
               </CK.Text>
             )}

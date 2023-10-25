@@ -41,7 +41,10 @@ const Foreign = () => {
               {versionData?.version && (
                 <CK.Text fontSize={"16px"} fontWeight={500}>
                   Dữ liệu InvestOne cập nhật lúc{" "}
-                  {format(new Date(+versionData?.version), "HH:mm dd/MM/yyyy")}
+                  {format(
+                    new Date(+versionData?.version),
+                    "HH:mm 'ngày' dd/MM/yyyy"
+                  )}
                 </CK.Text>
               )}
             </CK.Skeleton>
