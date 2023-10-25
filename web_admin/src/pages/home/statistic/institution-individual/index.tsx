@@ -47,7 +47,7 @@ const Component = () => {
           </CK.HStack>
           {versionData?.version && (
             <CK.Text fontWeight={500} fontSize={"16px"}>
-              Dữ liệu InvestOne cập nhật lúc 15:30 ngày{" "}
+              Dữ liệu InvestOne cập nhật lúc ngày{" "}
               {format(new Date(+versionData?.version), "HH:mm dd/MM/yyyy")}
             </CK.Text>
           )}
@@ -85,7 +85,7 @@ const Component = () => {
           </CK.HStack>
           {versionData?.version && (
             <CK.Text fontWeight={500} fontSize={"16px"}>
-              Dữ liệu InvestOne cập nhật lúc 15:30 ngày{" "}
+              Dữ liệu InvestOne cập nhật lúc ngày{" "}
               {format(new Date(+versionData?.version), "HH:mm dd/MM/yyyy")}
             </CK.Text>
           )}
@@ -125,7 +125,7 @@ const Component = () => {
           </CK.HStack>
           {versionData?.version && (
             <CK.Text fontWeight={500} fontSize={"16px"}>
-              Dữ liệu InvestOne cập nhật lúc 15:30 ngày{" "}
+              Dữ liệu InvestOne cập nhật lúc ngày{" "}
               {format(new Date(+versionData?.version), "HH:mm dd/MM/yyyy")}
             </CK.Text>
           )}
@@ -163,7 +163,7 @@ const Component = () => {
           </CK.HStack>
           {versionData?.version && (
             <CK.Text fontWeight={500} fontSize={"16px"}>
-              Dữ liệu InvestOne cập nhật lúc 15:30 ngày{" "}
+              Dữ liệu InvestOne cập nhật lúc ngày{" "}
               {format(new Date(+versionData?.version), "HH:mm dd/MM/yyyy")}
             </CK.Text>
           )}
