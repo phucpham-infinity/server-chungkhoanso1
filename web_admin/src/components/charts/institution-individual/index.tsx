@@ -169,14 +169,15 @@ const Capitalization = (props: ICapitalization) => {
                 {objData["gt_mua"] && objData["gt_ban"] && (
                   <CK.Text lineHeight={"36px"}>
                     {numeral(
-                      (objData["gt_mua"]?.value + objData["gt_ban"]?.value) /
-                        10000000
-                    ).format("0,0.00")}
+                      ((objData["gt_mua"]?.value + objData["gt_ban"]?.value) *
+                        100) /
+                        100000000
+                    ).format("00,0")}
                   </CK.Text>
                 )}
               </CK.Text>
-              <CK.Text fontWeight={"bold"} fontSize={"12px"}>
-                triệu tỷ đồng
+              <CK.Text fontWeight={"bold"} fontSize={"10px"}>
+                tỷ đồng
               </CK.Text>
             </CK.Box>
             <ResponsiveContainer width="100%" height="100%">
@@ -216,7 +217,7 @@ const Capitalization = (props: ICapitalization) => {
                 </CK.Text>
                 {objData["gt_mua"]?.value && (
                   <CK.Text fontWeight={700} fontSize={"14px"}>
-                    {numeral(objData["gt_mua"]?.value).format("0,0")} Tỷ
+                    {numeral(objData["gt_mua"]?.value).format("0,0")} nghìn đồng
                   </CK.Text>
                 )}
               </CK.VStack>
@@ -264,7 +265,8 @@ const Capitalization = (props: ICapitalization) => {
               giá trị mua khớp lệnh
             </CK.Text>
             <CK.Text fontWeight={600} fontSize={"14px"}>
-              {numeral(objData?.["gt_mua_khop_lenh"]?.value).format("0,0")} Tỷ
+              {numeral(objData?.["gt_mua_khop_lenh"]?.value).format("0,0")}{" "}
+              nghìn đồng
             </CK.Text>
           </CK.VStack>
         </CK.HStack>
@@ -293,7 +295,8 @@ const Capitalization = (props: ICapitalization) => {
               giá trị Bán khớp lệnh
             </CK.Text>
             <CK.Text fontWeight={600} fontSize={"14px"}>
-              {numeral(objData?.["gt_ban_khop_lenh"]?.value).format("0,0")} Tỷ
+              {numeral(objData?.["gt_ban_khop_lenh"]?.value).format("0,0")}{" "}
+              nghìn đồng
             </CK.Text>
           </CK.VStack>
         </CK.HStack>
@@ -321,7 +324,8 @@ const Capitalization = (props: ICapitalization) => {
               Tổng giá trị Ròng
             </CK.Text>
             <CK.Text color={"#00AA00"} fontWeight={600} fontSize={"14px"}>
-              {numeral(objData?.["gt_ban_khop_lenh"]?.value).format("0,0")} Tỷ
+              {numeral(objData?.["gt_ban_khop_lenh"]?.value).format("0,0")}{" "}
+              nghìn đồng
             </CK.Text>
           </CK.VStack>
         </CK.HStack>
