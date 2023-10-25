@@ -54,7 +54,7 @@ const CustomizedDot = (props) => {
       fill="green"
       viewBox="0 0 1024 1024"
     >
-      <circle r="70" stroke="white" stroke-width="2" fill="white" />
+      <circle r="70" stroke="white" stroke-width="2" fill="#E4AA0A" />
       <text
         x="50"
         y="-120"
@@ -63,7 +63,7 @@ const CustomizedDot = (props) => {
         fontWeight={600}
         fill="#E4AA0A"
       >
-        {numeral(Number(value)).format("0,0")}
+        {numeral(Number(value)).format("0,0.00")}
       </text>
     </svg>
   );
@@ -105,10 +105,10 @@ const ForeignTop12 = (props: IForeignTop12) => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis tick={<CustomizedAxisTick />} dataKey="symbol" />
             <YAxis
-              label={<CustomizedLabel label="(KL) triệu CP" />}
+              label={<CustomizedLabel label="(KL) CP" />}
               type="number"
               yAxisId="1"
-              tick={<CustomizedTick ratio={10000} offsetX={-30} />}
+              tick={<CustomizedTick ratio={1} offsetX={-60} />}
             />
             <YAxis
               label={<CustomizedLabel label="GT (tỷ)" />}
