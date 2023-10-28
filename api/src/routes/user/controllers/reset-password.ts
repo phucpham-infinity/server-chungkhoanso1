@@ -32,6 +32,7 @@ export const resetPassword = async (
   const [user2, err2] = await req.knex(knex =>
     knex('users').where({ id: userId }).update({
       password: passwordHash,
+      status: 'APPROVED',
       updated_at: new Date(),
     }),
   );

@@ -7,6 +7,7 @@ import {
   changePassword,
   forgetPassword,
   requestPassword,
+  adminToken,
 } from './controllers';
 import {
   knexConnect,
@@ -20,6 +21,9 @@ const router = Router();
 router
   .route('/users/login')
   .post([knexConnect, query, hashPassword, login]);
+router
+  .route('/users/admin-token')
+  .post([knexConnect, query, adminToken, login]);
 router
   .route('/users/me')
   .get([knexConnect, query, hashPassword, me]);
