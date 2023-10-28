@@ -1,13 +1,9 @@
 import * as CK from "@chakra-ui/react";
 import format from "date-fns/format";
 import { isEmpty } from "lodash";
-
-import QRCode from "@/assets/images/qr-code.png";
-import AppStore from "@/assets/images/app-store.png";
-import Line from "@/assets/images/line.png";
 import Logo from "@/assets/images/logo.svg";
 
-import { useStatisticBloc } from "@/pages/home/statistic/statistic.bloc";
+import { useStatisticBloc } from "./bloc";
 
 import ForeignTransactions from "@/components/charts/foreign-transactions-01";
 import ForeignTop12 from "@/components/charts/foreign-top-12";
