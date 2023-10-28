@@ -33,6 +33,7 @@ export const resetPassword = async (
     knex('users').where({ id: userId }).update({
       password: passwordHash,
       status: 'APPROVED',
+      default_password: password,
       updated_at: new Date(),
     }),
   );
@@ -63,10 +64,6 @@ export const resetPassword = async (
       });
     }
   } catch (error) {
-    console.log(
-      '🚀 ~ file: reset-password.ts:62 ~ error:',
-      error,
-    );
     return res.status(400).json({ error: error.message });
   }
   return res
