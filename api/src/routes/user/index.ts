@@ -8,6 +8,7 @@ import {
   forgetPassword,
   requestPassword,
   adminToken,
+  publicToken,
 } from './controllers';
 import {
   knexConnect,
@@ -24,6 +25,10 @@ router
 router
   .route('/users/admin-token')
   .post([knexConnect, query, adminToken, login]);
+
+router
+  .route('/users/public-token')
+  .post([knexConnect, query, publicToken, login]);
 router
   .route('/users/me')
   .get([knexConnect, query, hashPassword, me]);

@@ -6,3 +6,4 @@ export * from './forget-password';
 export * from './reset-password';
 export * from './request-password';
 export * from './admin-token';
+export * from './public-token';
