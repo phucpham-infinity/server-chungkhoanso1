@@ -6,6 +6,7 @@ import {
   resetPassword,
   changePassword,
   forgetPassword,
+  requestPassword,
 } from './controllers';
 import {
   knexConnect,
@@ -58,6 +59,16 @@ router
     hashPassword,
     mailTransporterConnect,
     forgetPassword,
+  ]);
+
+router
+  .route('/users/request-password')
+  .post([
+    knexConnect,
+    query,
+    hashPassword,
+    mailTransporterConnect,
+    requestPassword,
   ]);
 
 export default router;
