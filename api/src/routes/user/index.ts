@@ -9,6 +9,7 @@ import {
   requestPassword,
   adminToken,
   publicToken,
+  register,
 } from './controllers';
 import {
   knexConnect,
@@ -79,5 +80,9 @@ router
     mailTransporterConnect,
     requestPassword,
   ]);
+
+router
+  .route('/users/register')
+  .post([knexConnect, query, register]);
 
 export default router;
