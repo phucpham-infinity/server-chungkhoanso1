@@ -48,7 +48,7 @@ const Industry = (props: IIndustry) => {
           bgColor={"white"}
         >
           <p className="label">{`${payload[0]?.payload?.label} : ${numeral(
-            payload[0].value
+            payload[0].value * 100
           ).format("0.00")}%`}</p>
         </CK.HStack>
       );
