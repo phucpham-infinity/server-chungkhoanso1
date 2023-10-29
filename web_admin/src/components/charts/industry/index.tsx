@@ -77,6 +77,8 @@ const Industry = (props: IIndustry) => {
               fill="#8884d8"
               labelLine={false}
               label={renderCustomizedLabel}
+              startAngle={90}
+              endAngle={360 + 90}
             >
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={data[index].color} />
