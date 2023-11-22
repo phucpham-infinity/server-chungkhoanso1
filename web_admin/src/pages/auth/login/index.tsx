@@ -28,7 +28,7 @@ export default function LoginPage() {
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
           <Image w={"100px"} src={Logo} />
-          <Heading fontSize={"2xl"}>Sign in to your account</Heading>
+          <Heading fontSize={"2xl"}>Sign in to your account 2023</Heading>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
             <Input
